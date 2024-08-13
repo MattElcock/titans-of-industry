@@ -1,11 +1,11 @@
 import axios from "axios";
+import { getConfig } from "./config";
 
 export const get = (url: string) => {
-  const token = process.env.DISCORD_AUTHORIZATION_TOKEN;
-
+  const config = getConfig();
   return axios.get(`https://discord.com/api/v10/${url}`, {
     headers: {
-      Authorization: token,
+      Authorization: config.authToken,
     },
   });
 };
