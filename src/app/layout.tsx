@@ -1,6 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { EB_Garamond } from "next/font/google";
+import Link from "next/link";
 
 const font = EB_Garamond({
   subsets: ["latin"],
@@ -34,16 +35,18 @@ export default function RootLayout({
               ]}
               color="#fff"
             >
-              <Text
-                fontSize={["3xl", "4xl"]}
-                className={font.className}
-                lineHeight={1}
-              >
-                <Text fontSize={["lg", "xl"]} as="span" display="block">
-                  TITANS OF
+              <Link href="/">
+                <Text
+                  fontSize={["3xl", "4xl"]}
+                  className={font.className}
+                  lineHeight={1}
+                >
+                  <Text fontSize={["lg", "xl"]} as="span" display="block">
+                    TITANS OF
+                  </Text>
+                  INDUSTRY
                 </Text>
-                INDUSTRY
-              </Text>
+              </Link>
             </Box>
             <Box as="main" bgColor="#051937" padding="1rem 2rem">
               {children}

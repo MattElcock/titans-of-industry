@@ -1,12 +1,21 @@
 import { getConfig } from "@/apiUtils/config";
+import { getChannelById } from "@/apiUtils/getChannelById";
 import { listThreads } from "@/apiUtils/listThreads";
+import { sortBy } from "lodash";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     const config = getConfig();
-    const resp = await listThreads();
 
+    const channels = await Promise.all(
+      config.channelIds.map(async (channelId) => {
+        const response = await getChannelById(channelId);
+        return response.data;
+      })
+    );
+
+    const resp = await listThreads();
     const filteredThreads = resp.data.threads.filter((thread: any) =>
       config.channelIds.includes(thread.parent_id)
     );
@@ -14,9 +23,10 @@ export async function GET() {
     const organisations = filteredThreads.map((thread: any) => ({
       id: thread.id,
       name: thread.name,
+      type: channels.find((channel) => channel.id === thread.parent_id)?.name,
     }));
 
-    return NextResponse.json(organisations, { status: 200 });
+    return NextResponse.json(sortBy(organisations, "name"), { status: 200 });
   } catch (error) {
     console.error(error);
 
