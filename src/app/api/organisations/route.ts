@@ -1,8 +1,8 @@
 import { getConfig } from "@/utils/config";
 import { sortBy } from "lodash";
 import { NextResponse } from "next/server";
-import { getChannelById } from "../_functions/discord/getChannelById";
-import { listThreads } from "../_functions/discord/listThreads";
+import { getChannelById } from "../_discord/getChannelById";
+import { listThreads } from "../_discord/listThreads";
 
 export async function GET() {
   try {
