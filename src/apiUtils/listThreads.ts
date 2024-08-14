@@ -12,10 +12,10 @@ export const listThreads = async () => {
     })
   );
 
-  const combinedThreads = flatMap([
+  const allThreads = flatMap([
     ...activeThreads.data.threads,
     ...archivedThreads,
   ]);
 
-  return combinedThreads;
+  return allThreads;
 };
