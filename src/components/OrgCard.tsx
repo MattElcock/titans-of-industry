@@ -17,7 +17,7 @@ interface OrgCardProps {
 
 export const OrgCard = ({ name, type }: OrgCardProps) => {
   return (
-    <Card width={["auto", "20rem"]}>
+    <Card width={["auto", "23rem"]}>
       <CardBody>
         <Stack direction="row" alignItems="center" pb={1}>
           {iconMap[type]}
