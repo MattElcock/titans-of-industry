@@ -1,7 +1,7 @@
 import axios from "axios";
-import { getConfig } from "./config";
+import { getConfig } from "../../../utils/config";
 
-export const get = (url: string) => {
+export const discordApiGet = (url: string) => {
   const config = getConfig();
   return axios.get(`https://discord.com/api/v10/${url}`, {
     headers: {

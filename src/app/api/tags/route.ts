@@ -1,7 +1,7 @@
-import { getConfig } from "@/apiUtils/config";
-import { getChannelById } from "@/apiUtils/getChannelById";
+import { getConfig } from "@/utils/config";
 import { flatMap } from "lodash";
 import { NextResponse } from "next/server";
+import { getChannelById } from "../_discord/getChannelById";
 
 export async function GET() {
   try {
