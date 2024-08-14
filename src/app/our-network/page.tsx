@@ -1,5 +1,5 @@
-import { getConfig } from "@/apiUtils/config";
 import { OrgCard } from "@/components/OrgCard";
+import { getConfig } from "@/utils/config";
 import { Box, Heading, Stack } from "@chakra-ui/react";
 import axios from "axios";
 

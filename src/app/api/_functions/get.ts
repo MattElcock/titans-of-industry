@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getConfig } from "./config";
+import { getConfig } from "../../../utils/config";
 
 export const get = (url: string) => {
   const config = getConfig();

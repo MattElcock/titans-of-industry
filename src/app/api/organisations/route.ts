@@ -1,8 +1,8 @@
-import { getConfig } from "@/apiUtils/config";
-import { getChannelById } from "@/apiUtils/getChannelById";
-import { listThreads } from "@/apiUtils/listThreads";
+import { getConfig } from "@/utils/config";
 import { sortBy } from "lodash";
 import { NextResponse } from "next/server";
+import { getChannelById } from "../_functions/getChannelById";
+import { listThreads } from "../_functions/listThreads";
 
 export async function GET() {
   try {
