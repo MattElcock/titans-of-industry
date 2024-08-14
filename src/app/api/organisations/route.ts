@@ -15,8 +15,9 @@ export async function GET() {
       })
     );
 
-    const resp = await listThreads();
-    const filteredThreads = resp.data.threads.filter((thread: any) =>
+    const threads = await listThreads();
+
+    const filteredThreads = threads.filter((thread: any) =>
       config.channelIds.includes(thread.parent_id)
     );
 
