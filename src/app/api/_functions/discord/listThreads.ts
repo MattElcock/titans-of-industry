@@ -1,6 +1,6 @@
 import { getConfig } from "@/utils/config";
 import { flatMap } from "lodash";
-import { get } from "./get";
+import { get } from "../get";
 
 export const listThreads = async () => {
   const config = getConfig();
