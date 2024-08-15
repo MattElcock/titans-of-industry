@@ -16,7 +16,7 @@ export default async function OurNetwork() {
       </Heading>
       <Stack spacing={[5, 10]} direction={["column", "row"]} flexWrap="wrap">
         {organisations.map(({ id, name, type }: any) => (
-          <OrgCard key={id} name={name} type={type} />
+          <OrgCard key={id} name={name} type={type} id={id} />
         ))}
       </Stack>
     </Box>

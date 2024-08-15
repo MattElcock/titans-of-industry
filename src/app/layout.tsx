@@ -7,9 +7,6 @@ const font = EB_Garamond({
   subsets: ["latin"],
 });
 
-interface AppLayoutProps {
-  children: ReactNode;
-}
 import { Providers } from "./providers";
 
 export default function RootLayout({
