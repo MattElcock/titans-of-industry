@@ -1,13 +1,20 @@
-import { OrgCard } from "@/components/OrgCard";
-import { getConfig } from "@/utils/config";
-import { Box, Heading, Stack } from "@chakra-ui/react";
-import axios from "axios";
+"use client";
 
-export default async function OurNetwork() {
-  const config = getConfig();
-  const { data: organisations } = await axios.get(
-    `${config.apiUrl}/organisations`
-  );
+import { OrgCard } from "@/components/OrgCard";
+import { useOrganisations } from "@/hooks/useOrganisations";
+import { Box, Heading, Stack } from "@chakra-ui/react";
+
+export default function OurNetwork() {
+  const { isLoading, error, data } = useOrganisations();
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
+
+  if (!data || error) {
+    if (error) console.error(error);
+    return <p>Error</p>;
+  }
 
   return (
     <Box>
@@ -15,7 +22,7 @@ export default async function OurNetwork() {
         Our Network
       </Heading>
       <Stack spacing={[5, 10]} direction={["column", "row"]} flexWrap="wrap">
-        {organisations.map(({ id, name, type }: any) => (
+        {data.map(({ id, name, type }: any) => (
           <OrgCard key={id} name={name} type={type} id={id} />
         ))}
       </Stack>
