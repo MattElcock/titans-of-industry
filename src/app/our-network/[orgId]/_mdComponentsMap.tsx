@@ -3,15 +3,15 @@ import { Components } from "react-markdown";
 
 export const mdComponentsMap: Partial<Components> = {
   p: ({ node, ...props }) => (
-    <Text {...props} color="#fff" pb={3} as={node?.tagName as As} />
+    <Text {...props} color="#E1E1E1" pb={3} as={node?.tagName as As} />
   ),
   h1: ({ node, ...props }) => (
-    <Heading {...props} color="#fff" pb={5} as={node?.tagName as As} />
+    <Heading {...props} color="#E1E1E1" pb={5} as={node?.tagName as As} />
   ),
   h2: ({ node, ...props }) => (
     <Heading
       {...props}
-      color="#fff"
+      color="#E1E1E1"
       size="lg"
       pb={3}
       pt={2}
@@ -21,7 +21,7 @@ export const mdComponentsMap: Partial<Components> = {
   h3: ({ node, ...props }) => (
     <Heading
       {...props}
-      color="#fff"
+      color="#E1E1E1"
       size="lg"
       pb={3}
       pt={2}
@@ -34,7 +34,7 @@ export const mdComponentsMap: Partial<Components> = {
   li: ({ node, ...props }) => (
     <ListItem
       {...props}
-      color="#fff"
+      color="#E1E1E1"
       as={node?.tagName as As}
       css={{ "> p": { padding: 0 } }}
     />

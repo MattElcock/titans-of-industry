@@ -1,6 +1,6 @@
 import { getConfig } from "@/utils/config";
-import axios, { AxiosResponse } from "axios";
-import { useQuery, UseQueryOptions } from "react-query";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 const getOrganisationById = (id: string) => {
   const config = getConfig();

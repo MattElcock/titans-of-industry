@@ -18,7 +18,7 @@ export default function OurNetwork() {
 
   return (
     <Box>
-      <Heading color="#fff" pb={5}>
+      <Heading color="#E1E1E1" pb={5}>
         Our Network
       </Heading>
       <Stack spacing={[5, 10]} direction={["column", "row"]} flexWrap="wrap">
