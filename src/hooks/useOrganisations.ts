@@ -2,14 +2,31 @@ import { getConfig } from "@/utils/config";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const getOrganisations = () => {
-  const config = getConfig();
+interface useOrganisationsOptions {
+  pagination: {
+    page: number;
+  };
+}
 
-  return axios.get(`${config.apiUrl}/organisations`);
-};
+export const useOrganisations = (options: useOrganisationsOptions) => {
+  const queryFunc = () => {
+    const config = getConfig();
+    return axios.get(
+      `${config.apiUrl}/organisations?page=${options.pagination.page}`
+    );
+  };
 
-export const useOrganisations = () => {
-  const query = useQuery("organisations", getOrganisations);
+  const query = useQuery(
+    ["organisations", `page-${options.pagination.page}`],
+    queryFunc
+  );
 
-  return { ...query, data: query.data?.data };
+  const pagination = query.data
+    ? {
+        total: Number(query.data.headers["x-total"]),
+        limit: Number(query.data.headers["x-limit"]),
+      }
+    : undefined;
+
+  return { ...query, data: query.data?.data, pagination };
 };

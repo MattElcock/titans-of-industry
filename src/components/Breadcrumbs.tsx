@@ -58,7 +58,7 @@ export const Breadcrumbs = () => {
   const slugs = pathname.split("/").filter(Boolean);
 
   return (
-    <Breadcrumb mb={4}>
+    <Breadcrumb mb={4} color="#E1E1E1">
       {slugs.length > 0 && <Crumb slug="/" href="/" />}
       {slugs.map((slug, i) => (
         <Crumb

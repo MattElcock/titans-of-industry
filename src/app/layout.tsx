@@ -1,5 +1,5 @@
 import { Box, Container, Text } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { EB_Garamond } from "next/font/google";
 import Link from "next/link";
 
@@ -50,7 +50,7 @@ export default function RootLayout({
             <Box as="main" bgColor="#020b17">
               <Container maxW="container.xl" paddingY="1rem">
                 <Breadcrumbs />
-                {children}
+                <Suspense>{children}</Suspense>
               </Container>
             </Box>
           </Box>
