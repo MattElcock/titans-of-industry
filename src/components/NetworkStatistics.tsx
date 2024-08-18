@@ -6,7 +6,6 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -34,33 +33,38 @@ const Statistic = ({ label, value, large }: StatisticProps) => {
 };
 
 export const NetworkStatistics = async () => {
-  const config = getConfig();
-  const { data } = await axios.get(`${config.apiUrl}/statistics`);
+  try {
+    const config = getConfig();
+    const { data } = await axios.get(`${config.apiUrl}/statistics`);
 
-  return (
-    <Card bgColor="transparent" border="2px solid #157868" color="#E1E1E1">
-      <CardBody padding={["var(--card-padding)", "2rem 5rem"]}>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(3, 1fr)"
-          gridTemplateRows="1fr"
-          rowGap={5}
-          columnGap={[5, 0]}
-          alignContent="baseline"
-        >
+    return (
+      <Card bgColor="transparent" border="2px solid #157868" color="#E1E1E1">
+        <CardBody padding={["var(--card-padding)", "2rem 5rem"]}>
           <Box
-            gridRow="1"
-            gridColumn="1 / span 3"
-            alignSelf="center"
-            justifySelf="center"
+            display="grid"
+            gridTemplateColumns="repeat(3, 1fr)"
+            gridTemplateRows="1fr"
+            rowGap={5}
+            columnGap={[5, 0]}
+            alignContent="baseline"
           >
-            <Statistic label="Organisations" value={data.total} large />
+            <Box
+              gridRow="1"
+              gridColumn="1 / span 3"
+              alignSelf="center"
+              justifySelf="center"
+            >
+              <Statistic label="Organisations" value={data.total} large />
+            </Box>
+            <Statistic label="Powerbases" value={data.powerbasesCount} />
+            <Statistic label="Governorships" value={data.governorshipsCount} />
+            <Statistic label="Industries" value={data.industriesCount} />
           </Box>
-          <Statistic label="Powerbases" value={data.powerbasesCount} />
-          <Statistic label="Governorships" value={data.governorshipsCount} />
-          <Statistic label="Industries" value={data.industriesCount} />
-        </Box>
-      </CardBody>
-    </Card>
-  );
+        </CardBody>
+      </Card>
+    );
+  } catch (error) {
+    console.error(error);
+    return <p>Error</p>;
+  }
 };

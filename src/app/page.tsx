@@ -1,7 +1,7 @@
 import { IconCard } from "@/components/IconCard";
 import { NetworkStatistics } from "@/components/NetworkStatistics";
 import { Stack } from "@chakra-ui/react";
-import { Box, Network, PackageSearch } from "lucide-react";
+import { Network, PackageSearch } from "lucide-react";
 
 export default function Home() {
   return (
