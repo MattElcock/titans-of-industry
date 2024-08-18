@@ -5,8 +5,17 @@ import { Pagination } from "@/components/Pagination";
 import { useOrganisations } from "@/hooks/useOrganisations";
 import { Heading, Stack } from "@chakra-ui/react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { Suspense } from "react";
 
-export default function OurNetwork() {
+export default function WrappedPage() {
+  return (
+    <Suspense>
+      <OurNetwork />
+    </Suspense>
+  );
+}
+
+function OurNetwork() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
