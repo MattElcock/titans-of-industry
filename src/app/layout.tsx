@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Container, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { EB_Garamond } from "next/font/google";
 import Link from "next/link";
@@ -9,6 +9,7 @@ const font = EB_Garamond({
 
 import { Providers } from "./providers";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import Image from "next/image";
 
 export default function RootLayout({
   children,
@@ -21,34 +22,36 @@ export default function RootLayout({
         <Providers>
           <Box
             display="grid"
-            gridTemplateRows={["10rem 1fr auto", "13rem 1fr auto"]}
+            gridTemplateRows="auto 1fr auto"
             minHeight="100vh"
           >
-            <Box
-              as="header"
-              padding="2rem"
-              bgImage={[
-                "linear-gradient(173deg, rgba(22,120,105,1) 0%, rgba(5,25,55,1) 75%)",
-                "linear-gradient(175deg, rgba(22,120,105,1) 0%, rgba(5,25,55,1) 50%)",
-              ]}
-              color="#fff"
-            >
-              <Link href="/">
-                <Text
-                  fontSize={["3xl", "4xl"]}
-                  className={font.className}
-                  lineHeight={1}
+            <Box as="header" bgColor="#157868" color="#fff">
+              <Container maxW="container.xl" paddingY="0.75rem">
+                <Link
+                  href="/"
+                  style={{ display: "block", width: "fit-content" }}
                 >
-                  <Text fontSize={["lg", "xl"]} as="span" display="block">
-                    TITANS OF
-                  </Text>
-                  INDUSTRY
-                </Text>
-              </Link>
+                  <Box display="flex" gap={3} alignItems="center">
+                    <Image src="/logo.png" width={48} height={24} alt="Logo" />
+                    <Text
+                      fontSize="2xl"
+                      className={font.className}
+                      lineHeight={1}
+                    >
+                      <Text fontSize="md" as="span" display="block">
+                        TITANS OF
+                      </Text>
+                      INDUSTRY
+                    </Text>
+                  </Box>
+                </Link>
+              </Container>
             </Box>
-            <Box as="main" bgColor="#051937" padding="1rem 2rem">
-              <Breadcrumbs />
-              {children}
+            <Box as="main" bgColor="#020b17">
+              <Container maxW="container.xl" paddingY="1rem">
+                <Breadcrumbs />
+                {children}
+              </Container>
             </Box>
           </Box>
         </Providers>
