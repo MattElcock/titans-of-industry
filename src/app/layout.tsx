@@ -8,6 +8,7 @@ const font = EB_Garamond({
 });
 
 import { Providers } from "./providers";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export default function RootLayout({
   children,
@@ -46,6 +47,7 @@ export default function RootLayout({
               </Link>
             </Box>
             <Box as="main" bgColor="#051937" padding="1rem 2rem">
+              <Breadcrumbs />
               {children}
             </Box>
           </Box>
