@@ -50,7 +50,7 @@ export default function RootLayout({
             <Box as="main" bgColor="#020b17">
               <Container maxW="container.xl" paddingY="1rem">
                 <Breadcrumbs />
-                <Suspense>{children}</Suspense>
+                {children}
               </Container>
             </Box>
           </Box>

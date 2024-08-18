@@ -12,12 +12,19 @@ interface IconCardProps {
 export const IconCard = ({ icon, heading, text, href }: IconCardProps) => {
   return (
     <Link href={href}>
-      <Card width={["auto", "25rem"]} bgColor="#062046" color="#E1E1E1">
+      <Card width={["auto", "30rem"]} bgColor="#062046" color="#E1E1E1">
         <CardBody>
-          <Heading fontSize="xl" pb={1} lineHeight={2}>
+          <Heading
+            fontSize={["xl", "2xl"]}
+            pb={1}
+            lineHeight={2}
+            display="flex"
+            alignItems="center"
+            gap={2}
+          >
             {icon} {heading}
           </Heading>
-          <Text>{text}</Text>
+          <Text fontSize={["md", "lg"]}>{text}</Text>
         </CardBody>
       </Card>
     </Link>
