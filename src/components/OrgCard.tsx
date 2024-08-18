@@ -20,7 +20,15 @@ interface OrgCardProps {
 export const OrgCard = ({ id, name, type }: OrgCardProps) => {
   return (
     <Link href={`/our-network/${id}`}>
-      <Card width={["auto", "23rem"]} bgColor="#062046" color="#E1E1E1">
+      <Card
+        width={["auto", "23rem"]}
+        bgColor="#062046"
+        color="#E1E1E1"
+        _hover={{
+          opacity: 0.5,
+          bgColor: "#062046",
+        }}
+      >
         <CardBody>
           <Stack direction="row" alignItems="center" pb={1}>
             {iconMap[type]}

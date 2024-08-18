@@ -4,7 +4,9 @@ import { NextResponse } from "next/server";
 import { getChannelById } from "../_discord/getChannelById";
 import { listThreads } from "../_discord/listThreads";
 
-export async function GET() {
+const limit = 15;
+
+export async function GET(req: Request) {
   try {
     const config = getConfig();
 
@@ -21,13 +23,31 @@ export async function GET() {
       config.channelIds.includes(thread.parent_id)
     );
 
-    const organisations = filteredThreads.map((thread: any) => ({
+    const allOrganisations = filteredThreads.map((thread: any) => ({
       id: thread.id,
       name: thread.name,
       type: channels.find((channel) => channel.id === thread.parent_id)?.name,
     }));
 
-    return NextResponse.json(sortBy(organisations, "name"), { status: 200 });
+    const sortedOrganisations = sortBy(allOrganisations, "name");
+
+    // Apply pagination
+    const { searchParams } = new URL(req.url);
+    const currentPage = Number(searchParams.get("page")) || 1;
+    const startIndex = (currentPage - 1) * limit;
+
+    const limitedOrganisations = sortedOrganisations.slice(
+      startIndex,
+      startIndex + limit
+    );
+
+    return NextResponse.json(limitedOrganisations, {
+      status: 200,
+      headers: {
+        "x-total": allOrganisations.length.toString(),
+        "x-limit": limit.toString(),
+      },
+    });
   } catch (error) {
     console.error(error);
 
