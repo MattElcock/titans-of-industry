@@ -40,7 +40,7 @@ const Crumb = ({ slug, href, ...rest }: BreadcrumbProps) => {
     );
   }
 
-  const parsedSlug = slugMap[slug] || data.name;
+  const parsedSlug = slugMap[slug] || data?.name;
 
   return (
     <BreadcrumbItem {...rest}>
