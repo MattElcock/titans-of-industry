@@ -55,16 +55,8 @@ export const Breadcrumbs = () => {
   const pathname = usePathname();
   const slugs = pathname.split("/").filter(Boolean);
 
-  const breadcrumbStyles = {
-    ol: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, auto)",
-      justifyContent: "left",
-    },
-  };
-
   return (
-    <Breadcrumb color="#fff" mb={4} css={breadcrumbStyles}>
+    <Breadcrumb color="#fff" mb={4}>
       {slugs.length > 0 && <Crumb slug="/" href="/" />}
       {slugs.map((slug, i) => (
         <Crumb
