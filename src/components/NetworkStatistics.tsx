@@ -54,7 +54,7 @@ export const NetworkStatistics = async () => {
               alignSelf="center"
               justifySelf="center"
             >
-              <Statistic label="Organisations" value={data.total} large />
+              <Statistic label="Organizations" value={data.total} large />
             </Box>
             <Statistic label="Powerbases" value={data.powerbasesCount} />
             <Statistic label="Governorships" value={data.governorshipsCount} />
