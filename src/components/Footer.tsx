@@ -20,30 +20,37 @@ export const Footer = () => {
               Star Wars: The Old Republic
             </Link>
           </Text>
-          <Text fontSize="sm" display="flex" alignItems="center" gap={1}>
-            <IoLogoVercel aria-label="Vercel logo" />
-            Deployed on
-            <Link
-              href="https://vercel.com/"
-              target="_blank"
-              rel="noopener"
-              style={{ textDecoration: "underline" }}
-            >
-              Vercel
-            </Link>
-          </Text>
-          <Text fontSize="sm" display="flex" alignItems="center" gap={1}>
-            <RiCopyrightLine aria-label="Copyright" />
-            Built by
-            <Link
-              href="https://www.linkedin.com/in/matthewelcock"
-              target="_blank"
-              rel="noopener"
-              style={{ textDecoration: "underline" }}
-            >
-              Matthew Elcock
-            </Link>
-          </Text>
+          <Box
+            display="flex"
+            gap={3}
+            justifyContent={["space-between", "start"]}
+            flexDirection={["column", "row"]}
+          >
+            <Text fontSize="sm" display="flex" alignItems="center" gap={1}>
+              <IoLogoVercel aria-label="Vercel logo" />
+              Deployed on
+              <Link
+                href="https://vercel.com/"
+                target="_blank"
+                rel="noopener"
+                style={{ textDecoration: "underline" }}
+              >
+                Vercel
+              </Link>
+            </Text>
+            <Text fontSize="sm" display="flex" alignItems="center" gap={1}>
+              <RiCopyrightLine aria-label="Copyright" />
+              Built by
+              <Link
+                href="https://www.linkedin.com/in/matthewelcock"
+                target="_blank"
+                rel="noopener"
+                style={{ textDecoration: "underline" }}
+              >
+                Matthew Elcock
+              </Link>
+            </Text>
+          </Box>
         </Stack>
       </Container>
     </Box>
