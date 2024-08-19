@@ -6,20 +6,23 @@ interface useOrganisationsOptions {
   pagination: {
     page: number;
   };
+  filters: {
+    type?: string;
+  };
 }
 
 export const useOrganisations = (options: useOrganisationsOptions) => {
   const queryFunc = () => {
     const config = getConfig();
-    return axios.get(
-      `${config.apiUrl}/organisations?page=${options.pagination.page}`
-    );
+    const params = [
+      `page=${options.pagination.page}`,
+      ...(options.filters.type ? [`type=${options.filters.type}`] : []),
+    ];
+
+    return axios.get(`${config.apiUrl}/organisations?${params.join("&")}`);
   };
 
-  const query = useQuery(
-    ["organisations", `page-${options.pagination.page}`],
-    queryFunc
-  );
+  const query = useQuery(["organisations", options], queryFunc);
 
   const pagination = query.data
     ? {

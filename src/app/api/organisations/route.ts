@@ -1,5 +1,5 @@
 import { getConfig } from "@/utils/config";
-import { sortBy } from "lodash";
+import { sortBy, startCase } from "lodash";
 import { NextResponse } from "next/server";
 import { getChannelById } from "../_discord/getChannelById";
 import { listThreads } from "../_discord/listThreads";
@@ -31,12 +31,21 @@ export async function GET(req: Request) {
 
     const sortedOrganisations = sortBy(allOrganisations, "name");
 
-    // Apply pagination
     const { searchParams } = new URL(req.url);
+
+    // Apply filtering
+    const typeFilter = searchParams.get("type");
+    const typesArray = typeFilter ? typeFilter.split(",") : undefined;
+
+    const fiteredOrganisations = sortedOrganisations.filter((org) =>
+      typesArray ? typesArray.includes(startCase(org.type)) : true
+    );
+
+    // Apply pagination
     const currentPage = Number(searchParams.get("page")) || 1;
     const startIndex = (currentPage - 1) * limit;
 
-    const limitedOrganisations = sortedOrganisations.slice(
+    const limitedOrganisations = fiteredOrganisations.slice(
       startIndex,
       startIndex + limit
     );
@@ -44,7 +53,7 @@ export async function GET(req: Request) {
     return NextResponse.json(limitedOrganisations, {
       status: 200,
       headers: {
-        "x-total": allOrganisations.length.toString(),
+        "x-total": fiteredOrganisations.length.toString(),
         "x-limit": limit.toString(),
       },
     });
