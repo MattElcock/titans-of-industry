@@ -2,6 +2,13 @@ import { IconCard } from "@/components/IconCard";
 import { NetworkStatistics } from "@/components/NetworkStatistics";
 import { Stack } from "@chakra-ui/react";
 import { Network, PackageSearch } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home | Titans of Industry",
+  description:
+    "Titans of Industry brings together the Sith Empire's industrial powerhouses in a Star Wars: The Old Republic roleplaying community. Collaborate, streamline production, and immerse yourself in supporting the Empire's victory.",
+};
 
 export default function Home() {
   return (
