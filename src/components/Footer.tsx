@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { RiCopyrightLine } from "react-icons/ri";
+import { RiCopyrightLine, RiGithubLine } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
 
 export const Footer = () => {
@@ -36,6 +36,17 @@ export const Footer = () => {
                 style={{ textDecoration: "underline" }}
               >
                 Vercel
+              </Link>
+            </Text>
+            <Text size="sm" display="flex" alignItems="center" gap={1}>
+              <RiGithubLine aria-label="GitHub logo" />
+              <Link
+                href="https://github.com/MattElcock/titans-of-industry"
+                target="_blank"
+                rel="noopener"
+                style={{ textDecoration: "underline" }}
+              >
+                View code on GitHub
               </Link>
             </Text>
             <Text fontSize="sm" display="flex" alignItems="center" gap={1}>

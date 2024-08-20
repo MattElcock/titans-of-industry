@@ -24,20 +24,6 @@ const Logo = () => {
   );
 };
 
-const GitHubLink = () => {
-  return (
-    <Link
-      href="https://github.com/MattElcock/titans-of-industry"
-      target="_blank"
-      rel="noopener"
-      style={{ display: "block", width: "fit-content" }}
-      aria-label="View code on GitHub"
-    >
-      <RiGithubLine fontSize={28} aria-label="GitHub logo" />
-    </Link>
-  );
-};
-
 const DiscordInvite = () => {
   return (
     <Link
@@ -63,10 +49,7 @@ export const Header = () => {
         alignItems="center"
       >
         <Logo />
-        <Box display="flex" alignItems="center" gap={5}>
-          <GitHubLink />
-          <DiscordInvite />
-        </Box>
+        <DiscordInvite />
       </Container>
     </Box>
   );
