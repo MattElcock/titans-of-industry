@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { getChannelById } from "../_discord/getChannelById";
 import { listThreads } from "../_discord/listThreads";
 
-const limit = 15;
+const limit = 21;
 
 export async function GET(req: Request) {
   try {
