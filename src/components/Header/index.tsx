@@ -3,6 +3,7 @@ import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { DesktopMenu } from "./DesktopMenu";
 import { DiscordInvite } from "./DiscordInvite";
+import { Suspense } from "react";
 
 export const Header = () => {
   return (
@@ -18,7 +19,9 @@ export const Header = () => {
         >
           <Logo />
           <Box display={["block", "none"]}>
-            <MobileMenu />
+            <Suspense>
+              <MobileMenu />
+            </Suspense>
           </Box>
           <Box display={["none", "Block"]}>
             <DiscordInvite />
@@ -26,7 +29,9 @@ export const Header = () => {
         </Container>
       </Box>
       <Box display={["none", "Block"]} bgColor="#020b17" color="#E1E1E1" pt={2}>
-        <DesktopMenu />
+        <Suspense>
+          <DesktopMenu />
+        </Suspense>
       </Box>
     </Box>
   );

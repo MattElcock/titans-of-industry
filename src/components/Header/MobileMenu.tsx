@@ -62,6 +62,7 @@ const MenuLinks = () => {
         active={
           pathname.endsWith("/our-network") &&
           (searchParams.size === 0 ||
+            !!searchParams.get("page") ||
             (searchParams.get("type")?.split(",") || []).length > 1)
         }
       >
