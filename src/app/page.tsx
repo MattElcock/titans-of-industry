@@ -1,13 +1,23 @@
 import { IconCard } from "@/components/IconCard";
 import { NetworkStatistics } from "@/components/NetworkStatistics";
+import { commonOpenGraph } from "@/constants";
 import { Stack } from "@chakra-ui/react";
 import { Network, PackageSearch } from "lucide-react";
 import { Metadata } from "next";
 
+const pageTitle = "Home | Titans of Industry";
+const pageDescription =
+  "Titans of Industry brings together the Sith Empire's industrial powerhouses in a Star Wars: The Old Republic roleplaying community. Collaborate, streamline production, and immerse yourself in supporting the Empire's victory.";
+
 export const metadata: Metadata = {
   title: "Home | Titans of Industry",
-  description:
-    "Titans of Industry brings together the Sith Empire's industrial powerhouses in a Star Wars: The Old Republic roleplaying community. Collaborate, streamline production, and immerse yourself in supporting the Empire's victory.",
+  description: pageDescription,
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: "https://titans-of-industry.vercel.app/",
+    ...commonOpenGraph,
+  },
 };
 
 export default function Home() {

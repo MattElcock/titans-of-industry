@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { mdComponentsMap } from "./_mdComponentsMap";
 import { Metadata } from "next";
+import { commonOpenGraph } from "@/constants";
 
 interface Params {
   orgId: string;
@@ -19,9 +20,18 @@ export async function generateMetadata({ params }: { params: Params }) {
     `${config.apiUrl}/organisations/${orgId}`
   );
 
+  const pageTitle = `${organisation.name} | Titans of Industry`;
+  const pageDescription = `Discover and connect with ${organisation.name}, part of the Titans of Industry roleplaying community supporting the Sith Empire in Star Wars: The Old Republic.`;
+
   return {
-    title: `${organisation.name} | Titans of Industry`,
-    description: `Discover and connect with ${organisation.name}, part of the Titans of Industry roleplaying community supporting the Sith Empire in Star Wars: The Old Republic.`,
+    title: pageTitle,
+    description: pageDescription,
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: `https://titans-of-industry.vercel.app/our-network/${orgId}`,
+      ...commonOpenGraph,
+    },
   };
 }
 
