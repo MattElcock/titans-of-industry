@@ -1,51 +1,48 @@
-import { getConfig } from "@/utils/config";
-import { sortBy, startCase } from "lodash";
+import { flow, sortBy, startCase } from "lodash";
 import { NextResponse } from "next/server";
-import { getChannelById } from "../_discord/getChannelById";
-import { listThreads } from "../_discord/listThreads";
+import { getAllOrganisations } from "../_helpers/getAllOrganisations";
+import { Organisation } from "../types";
 
 const limit = 21;
 
+const filterByType = (
+  organisations: Organisation[],
+  typeParam: string | null
+): Organisation[] => {
+  if (typeParam === null) {
+    return organisations;
+  }
+
+  const typesArray = typeParam ? typeParam.split(",") : undefined;
+
+  const filteredOrganisations = organisations.filter((org) =>
+    typesArray ? typesArray.includes(startCase(org.type)) : true
+  );
+
+  return filteredOrganisations;
+};
+
 export async function GET(req: Request) {
   try {
-    const config = getConfig();
+    const allOrganisations = await getAllOrganisations();
 
-    const channels = await Promise.all(
-      config.channelIds.map(async (channelId) => {
-        const response = await getChannelById(channelId);
-        return response.data;
-      })
-    );
-
-    const threads = await listThreads();
-
-    const filteredThreads = threads.filter((thread: any) =>
-      config.channelIds.includes(thread.parent_id)
-    );
-
-    const allOrganisations = filteredThreads.map((thread: any) => ({
-      id: thread.id,
-      name: thread.name,
-      type: channels.find((channel) => channel.id === thread.parent_id)?.name,
-    }));
-
+    // Apply sorting
     const sortedOrganisations = sortBy(allOrganisations, "name");
 
+    // Apply filtering
     const { searchParams } = new URL(req.url);
 
-    // Apply filtering
     const typeFilter = searchParams.get("type");
-    const typesArray = typeFilter ? typeFilter.split(",") : undefined;
 
-    const fiteredOrganisations = sortedOrganisations.filter((org) =>
-      typesArray ? typesArray.includes(startCase(org.type)) : true
-    );
+    const applyFiltering = flow([(input) => filterByType(input, typeFilter)]);
+
+    const filteredOrganisations = applyFiltering(sortedOrganisations);
 
     // Apply pagination
     const currentPage = Number(searchParams.get("page")) || 1;
     const startIndex = (currentPage - 1) * limit;
 
-    const limitedOrganisations = fiteredOrganisations.slice(
+    const limitedOrganisations = filteredOrganisations.slice(
       startIndex,
       startIndex + limit
     );
@@ -53,7 +50,7 @@ export async function GET(req: Request) {
     return NextResponse.json(limitedOrganisations, {
       status: 200,
       headers: {
-        "x-total": fiteredOrganisations.length.toString(),
+        "x-total": filteredOrganisations.length.toString(),
         "x-limit": limit.toString(),
       },
     });
