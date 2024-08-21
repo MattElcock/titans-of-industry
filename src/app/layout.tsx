@@ -16,7 +16,12 @@ export default function RootLayout({
           <Box display="grid" gridTemplateRows="auto 1fr auto" minH="100vh">
             <Header />
             <Box as="main" bgColor="#020b17">
-              <Container maxW="container.xl" paddingY="1rem" height="100%">
+              <Container
+                maxW="container.xl"
+                paddingY="1rem"
+                height="100%"
+                pb={10}
+              >
                 <Breadcrumbs />
                 {children}
               </Container>

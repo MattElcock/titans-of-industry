@@ -1,11 +1,11 @@
 "use client";
 
-import { OrgCard } from "@/components/OrgCard";
+import { OrgCard, OrgCardLoadingState } from "@/components/OrgCard";
 import { Pagination } from "@/components/Pagination";
 import { RevealFilters } from "@/components/RevealFilters";
 import { useGetQueryParam } from "@/hooks/useGetQueryParam";
 import { useOrganisations } from "@/hooks/useOrganisations";
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 import { usePathname, useRouter } from "next/navigation";
 import { FiltersBar } from "./_FiltersBar";
 
@@ -51,35 +51,53 @@ export const OurNetwork = () => {
   ].length;
 
   return (
-    <Stack spacing={5}>
-      <Heading color="#E1E1E1">Our Network</Heading>
-      <Box display={["block", "none"]}>
-        <RevealFilters totalAppliedFilters={totalFiltersApplied}>
+    <Stack spacing={10}>
+      <Stack spacing={5}>
+        <Heading color="#E1E1E1">Our Network</Heading>
+        <Box display={["block", "none"]}>
+          <RevealFilters totalAppliedFilters={totalFiltersApplied}>
+            <FiltersBar />
+          </RevealFilters>
+        </Box>
+        <Box display={["none", "block"]}>
           <FiltersBar />
-        </RevealFilters>
-      </Box>
-      <Box display={["none", "block"]}>
-        <FiltersBar />
-      </Box>
+        </Box>
+      </Stack>
       {isLoading || !pagination || !data ? (
-        <p>Loading</p>
+        <Box
+          display="grid"
+          gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
+          gap={5}
+        >
+          {Array.from({ length: 6 }, () => (
+            <OrgCardLoadingState />
+          ))}
+        </Box>
       ) : (
         <>
-          <Stack
-            spacing={[5, 10]}
-            direction={["column", "row"]}
-            flexWrap="wrap"
-          >
-            {data.map(({ id, name, type }: any) => (
-              <OrgCard key={id} name={name} type={type} id={id} />
-            ))}
-          </Stack>
-          <Pagination
-            total={pagination.total}
-            limit={pagination.limit}
-            currentPage={page}
-            onChange={handleChangePage}
-          />
+          {data.length !== 0 ? (
+            <>
+              <Box
+                display="grid"
+                gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
+                gap={5}
+              >
+                {data.map(({ id, name, type }: any) => (
+                  <OrgCard key={id} name={name} type={type} id={id} />
+                ))}
+              </Box>
+              <Pagination
+                total={pagination.total}
+                limit={pagination.limit}
+                currentPage={page}
+                onChange={handleChangePage}
+              />
+            </>
+          ) : (
+            <Text color="#E1E1E1">
+              No organizations found. Please adjust your filters and try again.
+            </Text>
+          )}
         </>
       )}
     </Stack>
