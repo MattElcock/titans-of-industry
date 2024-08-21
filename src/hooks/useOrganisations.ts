@@ -8,18 +8,22 @@ interface useOrganisationsOptions {
   };
   filters: {
     type?: string;
+    wantedConnections?: string;
+    potentialOffers?: string;
   };
 }
 
 export const useOrganisations = (options: useOrganisationsOptions) => {
   const queryFunc = () => {
     const config = getConfig();
-    const params = [
-      `page=${options.pagination.page}`,
-      ...(options.filters.type ? [`type=${options.filters.type}`] : []),
-    ];
 
-    return axios.get(`${config.apiUrl}/organisations?${params.join("&")}`);
+    const params = { page: options.pagination.page, ...options.filters };
+    const queryString = Object.entries(params)
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${key}=${encodeURIComponent(value!)}`)
+      .join("&");
+
+    return axios.get(`${config.apiUrl}/organisations?${queryString}`);
   };
 
   const query = useQuery(["organisations", options], queryFunc);
