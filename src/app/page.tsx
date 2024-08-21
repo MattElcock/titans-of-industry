@@ -38,7 +38,7 @@ export default function Home() {
           <Text as="span" display="block">
             streamline production,
           </Text>
-          and drive the Empire's victory.
+          and drive the Empire&apos;s victory.
         </Heading>
         <Text color="#E1E1E1" fontSize={["sm", "lg"]}>
           <strong>Join Titans of Industry</strong>, a roleplaying community
