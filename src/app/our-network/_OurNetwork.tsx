@@ -44,11 +44,17 @@ export const OurNetwork = () => {
     updateUrl(params);
   };
 
+  const totalFiltersApplied = [
+    ...(type?.split(",") || []),
+    ...(wantedConnections?.split(",") || []),
+    ...(potentialOffers?.split(",") || []),
+  ].length;
+
   return (
     <Stack spacing={5}>
       <Heading color="#E1E1E1">Our Network</Heading>
       <Box display={["block", "none"]}>
-        <RevealFilters>
+        <RevealFilters totalAppliedFilters={totalFiltersApplied}>
           <FiltersBar />
         </RevealFilters>
       </Box>
