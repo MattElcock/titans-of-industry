@@ -5,3 +5,8 @@ export interface Organisation {
   wantedConnectionsCategories: string[];
   potentialOffersCategories: string[];
 }
+
+export interface Tag {
+  id: string;
+  name: string;
+}
