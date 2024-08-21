@@ -13,10 +13,48 @@ const filterByType = (
     return organisations;
   }
 
-  const typesArray = typeParam ? typeParam.split(",") : undefined;
+  const typesArray = typeParam.split(",");
 
   const filteredOrganisations = organisations.filter((org) =>
-    typesArray ? typesArray.includes(startCase(org.type)) : true
+    typesArray.includes(startCase(org.type))
+  );
+
+  return filteredOrganisations;
+};
+
+const filterByWantedConnections = (
+  organisations: Organisation[],
+  wantedConnections: string | null
+): Organisation[] => {
+  if (wantedConnections === null) {
+    return organisations;
+  }
+
+  const wantedConnectionsArr = wantedConnections.split(",");
+
+  const filteredOrganisations = organisations.filter((org) =>
+    org.wantedConnectionsCategories.some((connection) =>
+      wantedConnectionsArr.includes(connection)
+    )
+  );
+
+  return filteredOrganisations;
+};
+
+const filterByPotentialOffers = (
+  organisations: Organisation[],
+  potentialOffers: string | null
+): Organisation[] => {
+  if (potentialOffers === null) {
+    return organisations;
+  }
+
+  const potentialOffersArr = potentialOffers.split(",");
+
+  const filteredOrganisations = organisations.filter((org) =>
+    org.potentialOffersCategories.some((connection) =>
+      potentialOffersArr.includes(connection)
+    )
   );
 
   return filteredOrganisations;
@@ -33,8 +71,14 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
 
     const typeFilter = searchParams.get("type");
+    const wantedConnectionsFilter = searchParams.get("wantedConnections");
+    const potentialOffers = searchParams.get("potentialOffers");
 
-    const applyFiltering = flow([(input) => filterByType(input, typeFilter)]);
+    const applyFiltering = flow([
+      (input) => filterByType(input, typeFilter),
+      (input) => filterByWantedConnections(input, wantedConnectionsFilter),
+      (input) => filterByPotentialOffers(input, potentialOffers),
+    ]);
 
     const filteredOrganisations = applyFiltering(sortedOrganisations);
 

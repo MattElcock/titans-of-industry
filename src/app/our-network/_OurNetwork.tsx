@@ -12,34 +12,83 @@ export const OurNetwork = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
-  const type = searchParams.get("type")
-    ? String(searchParams.get("type"))
-    : undefined;
+  const getQueryParam = (name: string): string | undefined => {
+    return searchParams.get(name) ? String(searchParams.get(name)) : undefined;
+  };
 
-  const { isLoading, error, data, pagination } = useOrganisations({
+  const page = Number(getQueryParam("page") || 1);
+  const type = getQueryParam("type");
+  const wantedConnections = getQueryParam("wantedConnections");
+  const potentialOffers = getQueryParam("potentialOffers");
+
+  const { isLoading, data, pagination } = useOrganisations({
     pagination: { page },
-    filters: { type },
+    filters: { type, wantedConnections, potentialOffers },
   });
 
-  const updateUrl = (params: string[]) => {
-    router.push(
-      `${pathname}${params.length > 0 ? `?${params.join("&")}` : ""}`
-    );
+  const updateUrl = (params: Record<string, string | undefined>) => {
+    const queryString = Object.entries(params)
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${key}=${encodeURIComponent(value!)}`)
+      .join("&");
+
+    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
   };
 
   const handleChangePage = (page: number) => {
-    const type = searchParams.get("type");
-    const params = [`page=${page}`, ...(type ? [`type=${type}`] : [])];
+    const params = {
+      page: page.toString(),
+      type,
+      wantedConnections,
+      potentialOffers,
+    };
 
     updateUrl(params);
   };
 
   const handleTypeChange = (type: string[]) => {
-    const params = [...(type.length > 0 ? [`type=${type}`] : [])];
+    const params = {
+      type: type.length > 0 ? type.toString() : undefined,
+      wantedConnections,
+      potentialOffers,
+    };
 
     updateUrl(params);
   };
+
+  const handleWantedConnectionsChange = (wantedConnections: string[]) => {
+    const params = {
+      type,
+      wantedConnections:
+        wantedConnections.length > 0 ? wantedConnections.toString() : undefined,
+      potentialOffers,
+    };
+
+    updateUrl(params);
+  };
+
+  const handlePotentialOffersChange = (potentialOffers: string[]) => {
+    const params = {
+      type,
+      wantedConnections,
+      potentialOffers:
+        potentialOffers.length > 0 ? potentialOffers.toString() : undefined,
+    };
+
+    updateUrl(params);
+  };
+
+  const connectionCategories = [
+    "Agriculture",
+    "Finance",
+    "Entertainment",
+    "Health+Wellbeing",
+    "Land Development",
+    "Logistics",
+    "Manufacturing",
+    "Military",
+    "People",
+  ];
 
   return (
     <Stack spacing={5}>
@@ -50,6 +99,22 @@ export const OurNetwork = () => {
           defaultOptions={type ? type.split(",") : undefined}
           options={["Governorships", "Industries", "Powerbases"]}
           onChange={handleTypeChange}
+        />
+        <FilterDropdown
+          label="Wanted Connections"
+          defaultOptions={
+            wantedConnections ? wantedConnections.split(",") : undefined
+          }
+          options={connectionCategories}
+          onChange={handleWantedConnectionsChange}
+        />
+        <FilterDropdown
+          label="Potential Offers"
+          defaultOptions={
+            potentialOffers ? potentialOffers.split(",") : undefined
+          }
+          options={connectionCategories}
+          onChange={handlePotentialOffersChange}
         />
       </Box>
       {isLoading || !pagination || !data ? (
