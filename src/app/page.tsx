@@ -42,8 +42,8 @@ export default function Home() {
         </Heading>
         <Text color="#E1E1E1" fontSize={["sm", "lg"]}>
           <strong>Join Titans of Industry</strong>, a roleplaying community
-          uniting the Sith Empire's industrial leaders on Star Wars: The Old
-          Republic's Darth Malgus server.
+          uniting the Sith Empire&apos;s industrial leaders on Star Wars: The
+          Old Republic&apos;s Darth Malgus server.
         </Text>
       </Box>
       <Box display="grid" gridTemplateColumns={["1fr", "1fr 1fr"]} gap={5}>
