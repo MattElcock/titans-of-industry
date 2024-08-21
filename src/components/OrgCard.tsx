@@ -1,4 +1,11 @@
-import { Card, CardBody, Heading, Stack, Text } from "@chakra-ui/react";
+import {
+  Card,
+  CardBody,
+  Heading,
+  Skeleton,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { startCase } from "lodash";
 import { Earth, Factory, Shield } from "lucide-react";
 import Link from "next/link";
@@ -17,11 +24,16 @@ interface OrgCardProps {
   type: string;
 }
 
+export const OrgCardLoadingState = () => {
+  return <Skeleton width="100%" height="6rem" />;
+};
+
 export const OrgCard = ({ id, name, type }: OrgCardProps) => {
   return (
     <Link href={`/our-network/${id}`}>
       <Card
-        width={["auto", "23rem"]}
+        width="100%"
+        height="100%"
         bgColor="#062046"
         color="#E1E1E1"
         _hover={{
