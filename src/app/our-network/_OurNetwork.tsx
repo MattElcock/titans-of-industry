@@ -69,8 +69,8 @@ export const OurNetwork = () => {
           gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
           gap={5}
         >
-          {Array.from({ length: 6 }, () => (
-            <OrgCardLoadingState />
+          {Array.from({ length: 6 }, (_, i) => (
+            <OrgCardLoadingState key={`org-loading-${i}`} />
           ))}
         </Box>
       ) : (
