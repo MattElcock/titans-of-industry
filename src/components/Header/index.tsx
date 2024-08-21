@@ -23,15 +23,17 @@ export const Header = () => {
               <MobileMenu />
             </Suspense>
           </Box>
-          <Box display={["none", "Block"]}>
+          <Box
+            display={["none", "flex"]}
+            justifyContent="space-between"
+            gap={5}
+          >
+            <Suspense>
+              <DesktopMenu />
+            </Suspense>
             <DiscordInvite />
           </Box>
         </Container>
-      </Box>
-      <Box display={["none", "Block"]} bgColor="#020b17" color="#E1E1E1" pt={2}>
-        <Suspense>
-          <DesktopMenu />
-        </Suspense>
       </Box>
     </Box>
   );
