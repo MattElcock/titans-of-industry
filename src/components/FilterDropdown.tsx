@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Button,
   Checkbox,
@@ -72,6 +73,9 @@ export const FilterDropdown = ({
   const togglePanelVisibility = () => {
     setIsPanelVisible((current) => !current);
   };
+
+  const numOfAppliedFilters = defaultOptions?.length || 0;
+
   return (
     <Box ref={ref} position="relative" width={["100%", "fit-content"]}>
       <Button
@@ -83,6 +87,7 @@ export const FilterDropdown = ({
         onClick={togglePanelVisibility}
       >
         {label}
+        {numOfAppliedFilters > 0 && <Badge ml={2}>{numOfAppliedFilters}</Badge>}
       </Button>
       {isPanelVisible && (
         <Panel
