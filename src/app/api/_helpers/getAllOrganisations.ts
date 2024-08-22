@@ -4,7 +4,7 @@ import { listThreads } from "../_discord/listThreads";
 import { Organisation, Tag } from "../types";
 import { getAllTags } from "./getAllTags";
 
-const extractConnections = (
+export const extractConnections = (
   connections: string[],
   prefix: "w:" | "o:"
 ): string[] => {
@@ -13,7 +13,7 @@ const extractConnections = (
     .map((connection) => connection.slice(prefix.length).trim());
 };
 
-const mapThreadToOrganisation = (
+export const mapThreadToOrganisation = (
   thread: any,
   channels: any[],
   tags: Tag[]
