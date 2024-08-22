@@ -21,7 +21,7 @@ export const RevealFilters = ({
       <Button
         onClick={onToggle}
         variant="flat"
-        color="#E1E1E1"
+        color="text"
         justifyContent="left"
         leftIcon={<Filter size={16} />}
       >

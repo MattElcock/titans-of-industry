@@ -5,7 +5,7 @@ import { IoLogoVercel } from "react-icons/io5";
 
 export const Footer = () => {
   return (
-    <Box as="footer" bgColor="#000" color="#E1E1E1">
+    <Box as="footer" bgColor="#000" color="text">
       <Container maxW="container.xl" padding="1rem 2rem">
         <Stack spacing={3}>
           <Text fontSize="sm">

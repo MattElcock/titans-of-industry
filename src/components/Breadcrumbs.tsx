@@ -44,10 +44,8 @@ const Crumb = ({ slug, href, ...rest }: BreadcrumbProps) => {
 
   return (
     <BreadcrumbItem {...rest}>
-      <BreadcrumbLink href={href} as={Link} lineHeight={1}>
-        <Text noOfLines={1} color="#E1E1E1">
-          {parsedSlug}
-        </Text>
+      <BreadcrumbLink href={href} as={Link} lineHeight={1} noOfLines={1}>
+        {parsedSlug}
       </BreadcrumbLink>
     </BreadcrumbItem>
   );
@@ -58,7 +56,7 @@ export const Breadcrumbs = () => {
   const slugs = pathname.split("/").filter(Boolean);
 
   return (
-    <Breadcrumb mb={4} color="#E1E1E1">
+    <Breadcrumb mb={4}>
       {slugs.length > 0 && <Crumb slug="/" href="/" />}
       {slugs.map((slug, i) => (
         <Crumb

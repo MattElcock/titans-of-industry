@@ -31,7 +31,7 @@ export default function Home() {
       paddingX={["1rem", "unset"]}
     >
       <Box mb={[5, 10]}>
-        <Heading color="#E1E1E1" fontSize={["3xl", "5xl"]} mb={3}>
+        <Heading fontSize={["3xl", "5xl"]} mb={3}>
           <Text as="span" display="block">
             Collaborate,
           </Text>
@@ -40,7 +40,7 @@ export default function Home() {
           </Text>
           and drive the Empire&apos;s victory.
         </Heading>
-        <Text color="#E1E1E1" fontSize={["sm", "lg"]}>
+        <Text fontSize={["sm", "lg"]}>
           <strong>Join Titans of Industry</strong>, a roleplaying community
           uniting the Sith Empire&apos;s industrial leaders on Star Wars: The
           Old Republic&apos;s Darth Malgus server.
