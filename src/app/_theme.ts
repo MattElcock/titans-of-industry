@@ -10,7 +10,7 @@ export const theme = extendTheme({
   colors: {
     primary: { 500: primaryColor },
     secondary: { 500: secondaryColor, 600: "#04152f" },
-    tertiary: { 100: "#334867", 500: tertiaryColor, 600: "#1a1a1a" },
+    tertiary: { 100: "#062046", 500: tertiaryColor, 600: "#1a1a1a" },
     text: textColor,
   },
   components: {
