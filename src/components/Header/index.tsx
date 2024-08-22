@@ -8,7 +8,7 @@ import { Suspense } from "react";
 export const Header = () => {
   return (
     <Box as="header">
-      <Box bg="primary" color="#fff">
+      <Box bg="primary.500" color="text">
         <Container
           maxW="container.xl"
           paddingY="0.75rem"

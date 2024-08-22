@@ -23,7 +23,7 @@ const Panel = ({ options, defaultOptions, onChange }: PanelProps) => {
     <Box
       position={["initial", "absolute"]}
       padding="1rem 2rem"
-      bg="tertiary"
+      bg="tertiary.500"
       color="text"
       zIndex={999}
       top={12}
@@ -80,9 +80,7 @@ export const FilterDropdown = ({
     <Box ref={ref} position="relative" width={["100%", "fit-content"]}>
       <Button
         width="100%"
-        bgColor="tertiary"
-        color="text"
-        _hover={{ bgColor: "#1a1a1a" }}
+        colorScheme="tertiary"
         rightIcon={<ChevronDown size={19} />}
         onClick={togglePanelVisibility}
       >

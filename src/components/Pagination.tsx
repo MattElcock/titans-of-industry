@@ -18,12 +18,7 @@ const PaginationButton = ({
 
   return (
     <Button
-      bg={isCurrentPage ? "primary" : "secondary"}
-      color="text"
-      _hover={{
-        opacity: 0.5,
-        bgColor: isCurrentPage ? "primary" : "secondary",
-      }}
+      colorScheme={isCurrentPage ? "primary" : "secondary"}
       onClick={handleClick}
     >
       {page}
@@ -73,13 +68,8 @@ export const Pagination = ({
     <Box display="flex" gap={5} justifyContent="center">
       <IconButton
         icon={<ArrowLeft />}
+        colorScheme="secondary"
         aria-label="Previous page"
-        bgColor="secondary"
-        color="text"
-        _hover={{
-          opacity: 0.5,
-          bgColor: "secondary",
-        }}
         onClick={handlePreviousPage}
         isDisabled={currentPage === 1}
       />
@@ -87,12 +77,7 @@ export const Pagination = ({
       <IconButton
         icon={<ArrowRight />}
         aria-label="Next page"
-        bgColor="secondary"
-        color="text"
-        _hover={{
-          opacity: 0.5,
-          bgColor: "secondary",
-        }}
+        colorScheme="secondary"
         onClick={handleNextPage}
         isDisabled={currentPage === numOfPages}
       />
