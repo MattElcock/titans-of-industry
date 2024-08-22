@@ -8,20 +8,19 @@ export const background = "#020b17";
 
 export const theme = extendTheme({
   colors: {
-    primary: primaryColor,
-    secondary: secondaryColor,
-    tertiary: tertiaryColor,
+    primary: { 500: primaryColor },
+    secondary: { 500: secondaryColor, 600: "#04152f" },
+    tertiary: { 500: tertiaryColor, 600: "#1a1a1a" },
     text: textColor,
   },
   components: {
     Card: {
       baseStyle: {
         container: {
-          bg: "secondary",
+          bg: "secondary.500",
           color: textColor,
           _hover: {
-            opacity: 0.5,
-            bg: "secondary",
+            bg: "#04152f",
           },
         },
       },
