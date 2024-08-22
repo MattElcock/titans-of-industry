@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getAllOrganisations } from "../_helpers/getAllOrganisations";
 import { Organisation } from "../types";
 
-const limit = 21;
+const DEFAULT_LIMIT = 21;
 
 const filterByType = (
   organisations: Organisation[],
@@ -69,6 +69,8 @@ export async function GET(req: Request) {
 
     // Apply filtering
     const { searchParams } = new URL(req.url);
+
+    const limit = Number(searchParams.get("limit") || DEFAULT_LIMIT);
 
     const typeFilter = searchParams.get("type");
     const wantedConnectionsFilter = searchParams.get("wantedConnections");

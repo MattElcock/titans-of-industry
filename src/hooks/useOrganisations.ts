@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 interface useOrganisationsOptions {
   pagination: {
     page: number;
+    limit?: number;
   };
   filters: {
     type?: string;
@@ -17,7 +18,7 @@ export const useOrganisations = (options: useOrganisationsOptions) => {
   const queryFunc = () => {
     const config = getConfig();
 
-    const params = { page: options.pagination.page, ...options.filters };
+    const params = { ...options.pagination, ...options.filters };
     const queryString = Object.entries(params)
       .filter(([, value]) => value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value!)}`)
