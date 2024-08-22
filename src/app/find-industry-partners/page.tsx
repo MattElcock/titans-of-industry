@@ -3,6 +3,7 @@ import { getConfig } from "@/utils/config";
 import axios from "axios";
 import { Metadata } from "next";
 import { FindIndustryPartners } from "./_FindIndustryPartners";
+import { Suspense } from "react";
 
 const pageTitle = "Find Industry Partners | Titans of Industry";
 const pageDescription =
@@ -25,5 +26,9 @@ export default async function Page() {
     `${config.apiUrl}/organisations`
   );
 
-  return <FindIndustryPartners allOrganisations={allOrganisations} />;
+  return (
+    <Suspense>
+      <FindIndustryPartners allOrganisations={allOrganisations} />
+    </Suspense>
+  );
 }
