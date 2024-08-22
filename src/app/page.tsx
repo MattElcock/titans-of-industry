@@ -54,7 +54,7 @@ export default function Home() {
           text="Explore the organizations within our network."
         />
         <IconCard
-          href="#"
+          href="/find-industry-partners"
           icon={<PackageSearch />}
           heading="Find Industry Partners"
           text="Select an organization from within our network and explore their suggested industry partners."

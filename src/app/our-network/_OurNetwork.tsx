@@ -5,14 +5,13 @@ import { Pagination } from "@/components/Pagination";
 import { RevealFilters } from "@/components/RevealFilters";
 import { useGetQueryParam } from "@/hooks/useGetQueryParam";
 import { useOrganisations } from "@/hooks/useOrganisations";
+import { useUpdateUrl } from "@/hooks/useUpdateUrl";
 import { Box, Heading, Stack, Text } from "@chakra-ui/react";
-import { usePathname, useRouter } from "next/navigation";
 import { FiltersBar } from "./_FiltersBar";
 
 export const OurNetwork = () => {
-  const router = useRouter();
-  const pathname = usePathname();
   const getQueryParam = useGetQueryParam();
+  const updateUrl = useUpdateUrl();
 
   const page = Number(getQueryParam("page") || 1);
   const type = getQueryParam("type");
@@ -23,15 +22,6 @@ export const OurNetwork = () => {
     pagination: { page },
     filters: { type, wantedConnections, potentialOffers },
   });
-
-  const updateUrl = (params: Record<string, string | undefined>) => {
-    const queryString = Object.entries(params)
-      .filter(([, value]) => value)
-      .map(([key, value]) => `${key}=${encodeURIComponent(value!)}`)
-      .join("&");
-
-    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
-  };
 
   const handleChangePage = (page: number) => {
     const params = {

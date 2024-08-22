@@ -19,6 +19,7 @@ interface BreadcrumbProps {
 const slugMap: Record<string, string> = {
   "/": "Home",
   "our-network": "Our Network",
+  "find-industry-partners": "Find Industry Partners",
 };
 
 const Crumb = ({ slug, href, ...rest }: BreadcrumbProps) => {
