@@ -1,17 +1,18 @@
 import {
-  TableContainer,
-  Thead,
-  Th,
-  Tbody,
-  Tr,
-  Td,
-  Table,
-  Box,
   Heading,
   Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 interface Organisation {
+  id: string;
   name: string;
   wantedConnectionsCategories: string[];
   potentialOffersCategories: string[];
@@ -34,7 +35,15 @@ export const OrgsThatCanHelpSelected = ({
 
     return (
       <Tr key={`row-${partner.name}`}>
-        <Td>{partner.name}</Td>
+        <Td textDecoration="underline">
+          <Link
+            href={`/our-network/${partner.id}`}
+            target="_blank"
+            rel="noopener"
+          >
+            {partner.name}
+          </Link>
+        </Td>
         <Td>{helpfulSelectedOrgCategories.join(", ")}</Td>
       </Tr>
     );
@@ -46,7 +55,8 @@ export const OrgsThatCanHelpSelected = ({
       </Heading>
       <TableContainer>
         <Table
-          variant="simple"
+          variant="striped"
+          colorScheme="tertiary"
           size="sm"
           color="text"
           width={["100%", "40rem"]}
