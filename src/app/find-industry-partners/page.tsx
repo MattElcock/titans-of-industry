@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const config = getConfig();
   const { data: allOrganisations } = await axios.get(
-    `${config.apiUrl}/organisations`
+    `${config.apiUrl}/organisations?limit=999`
   );
 
   return (
