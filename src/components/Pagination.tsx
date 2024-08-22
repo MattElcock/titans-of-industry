@@ -18,11 +18,11 @@ const PaginationButton = ({
 
   return (
     <Button
-      bgColor={isCurrentPage ? "#157868" : "#062046"}
-      color="#E1E1E1"
+      bg={isCurrentPage ? "primary" : "secondary"}
+      color="text"
       _hover={{
         opacity: 0.5,
-        bgColor: isCurrentPage ? "#157868" : "#062046",
+        bgColor: isCurrentPage ? "primary" : "secondary",
       }}
       onClick={handleClick}
     >
@@ -74,11 +74,11 @@ export const Pagination = ({
       <IconButton
         icon={<ArrowLeft />}
         aria-label="Previous page"
-        bgColor="#062046"
-        color="#E1E1E1"
+        bgColor="secondary"
+        color="text"
         _hover={{
           opacity: 0.5,
-          bgColor: "#062046",
+          bgColor: "secondary",
         }}
         onClick={handlePreviousPage}
         isDisabled={currentPage === 1}
@@ -87,11 +87,11 @@ export const Pagination = ({
       <IconButton
         icon={<ArrowRight />}
         aria-label="Next page"
-        bgColor="#062046"
-        color="#E1E1E1"
+        bgColor="secondary"
+        color="text"
         _hover={{
           opacity: 0.5,
-          bgColor: "#062046",
+          bgColor: "secondary",
         }}
         onClick={handleNextPage}
         isDisabled={currentPage === numOfPages}

@@ -53,7 +53,7 @@ export const OurNetwork = () => {
   return (
     <Stack spacing={10}>
       <Stack spacing={5}>
-        <Heading color="#E1E1E1">Our Network</Heading>
+        <Heading>Our Network</Heading>
         <Box display={["block", "none"]}>
           <RevealFilters totalAppliedFilters={totalFiltersApplied}>
             <FiltersBar />
@@ -94,7 +94,7 @@ export const OurNetwork = () => {
               />
             </>
           ) : (
-            <Text color="#E1E1E1">
+            <Text>
               No organizations found. Please adjust your filters and try again.
             </Text>
           )}

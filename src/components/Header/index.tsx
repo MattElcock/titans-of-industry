@@ -8,7 +8,7 @@ import { Suspense } from "react";
 export const Header = () => {
   return (
     <Box as="header">
-      <Box bgColor="#157868" color="#fff">
+      <Box bg="primary" color="#fff">
         <Container
           maxW="container.xl"
           paddingY="0.75rem"
@@ -28,9 +28,7 @@ export const Header = () => {
             justifyContent="space-between"
             gap={5}
           >
-            <Suspense>
-              <DesktopMenu />
-            </Suspense>
+            <DesktopMenu />
             <DiscordInvite />
           </Box>
         </Container>

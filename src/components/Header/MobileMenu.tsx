@@ -36,7 +36,7 @@ interface NavLinkProps {
 
 const NavLink = ({ icon, href, children, active }: NavLinkProps) => {
   return (
-    <ListItem color={active ? "#157868" : "inherit"}>
+    <ListItem color={active ? "primary" : "inherit"}>
       <Link href={href}>
         <Stack direction="row" gap={3} alignItems="center">
           {React.cloneElement(icon, { size: 19 })}
@@ -126,7 +126,7 @@ export const MobileMenu = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bgColor="#020b17" color="#E1E1E1" width="70vw!important">
+        <DrawerContent width="70vw!important">
           <DrawerCloseButton />
           <DrawerBody pt={16}>
             <MenuLinks />
