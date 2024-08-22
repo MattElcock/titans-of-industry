@@ -16,7 +16,7 @@ const NavLink = ({ href, children }: NavLinkProps) => {
 
 export const DesktopMenu = () => {
   return (
-    <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center" as="nav">
       <UnorderedList
         styleType="none"
         display="flex"

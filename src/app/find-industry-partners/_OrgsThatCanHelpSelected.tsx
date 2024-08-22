@@ -34,8 +34,18 @@ export const OrgsThatCanHelpSelected = ({
       );
 
     return (
-      <Tr key={`row-${partner.name}`}>
-        <Td textDecoration="underline">
+      <Tr
+        key={`row-${partner.name}`}
+        css={{
+          "&:nth-of-type(odd)": {
+            backgroundColor: "#081629",
+          },
+          "&:nth-of-type(even)": {
+            backgroundColor: "#04152f",
+          },
+        }}
+      >
+        <Td textDecoration="underline" fontWeight="bold">
           <Link
             href={`/our-network/${partner.id}`}
             target="_blank"
