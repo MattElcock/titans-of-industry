@@ -14,7 +14,10 @@ interface useOrganisationsOptions {
   };
 }
 
-export const useOrganisations = (options: useOrganisationsOptions) => {
+export const useOrganisations = (
+  options: useOrganisationsOptions,
+  enabled: boolean = true
+) => {
   const queryFunc = () => {
     const config = getConfig();
 
@@ -27,7 +30,7 @@ export const useOrganisations = (options: useOrganisationsOptions) => {
     return axios.get(`${config.apiUrl}/organisations?${queryString}`);
   };
 
-  const query = useQuery(["organisations", options], queryFunc);
+  const query = useQuery(["organisations", options], queryFunc, { enabled });
 
   const pagination = query.data
     ? {

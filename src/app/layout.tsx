@@ -16,7 +16,7 @@ export default function RootLayout({
         <Providers>
           <Box display="grid" gridTemplateRows="auto 1fr auto" minH="100vh">
             <Header />
-            <Box as="main" bg={background}>
+            <Box as="main" bg={background} width="100vw">
               <Container
                 maxW="container.xl"
                 paddingY="1rem"
