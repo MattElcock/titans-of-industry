@@ -1,3 +1,4 @@
+import { Organisation } from "@/app/api/types";
 import { getConfig } from "@/utils/config";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -14,10 +15,20 @@ interface useOrganisationsOptions {
   };
 }
 
+interface useOrganisationsReturn {
+  isLoading: boolean;
+  error: unknown;
+  data?: Organisation[];
+  pagination?: {
+    total: number;
+    limit: number;
+  };
+}
+
 export const useOrganisations = (
   options: useOrganisationsOptions,
   enabled: boolean = true
-) => {
+): useOrganisationsReturn => {
   const queryFunc = () => {
     const config = getConfig();
 
@@ -39,5 +50,10 @@ export const useOrganisations = (
       }
     : undefined;
 
-  return { ...query, data: query.data?.data, pagination };
+  return {
+    isLoading: query.isLoading,
+    error: query.error,
+    data: query.data?.data,
+    pagination,
+  };
 };
