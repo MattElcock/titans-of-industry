@@ -79,6 +79,7 @@ export const OurNetwork = () => {
                 gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
                 gap={5}
                 styleType="none"
+                m={0}
               >
                 {data.map(({ id, name, type }: any) => (
                   <ListItem key={id}>

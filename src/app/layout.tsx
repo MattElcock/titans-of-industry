@@ -1,11 +1,10 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { Box, Container } from "@chakra-ui/react";
-import { Providers } from "./providers";
-import { Footer } from "@/components/Footer";
 import { background } from "./_theme";
-import { Analytics } from "@vercel/analytics/react";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { Providers } from "./providers";
 
 export default function RootLayout({
   children,
@@ -15,10 +14,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
-          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
-        )}
         <Providers>
+          <GoogleAnalytics />
           <Box display="grid" gridTemplateRows="auto 1fr auto" minH="100vh">
             <Header />
             <Box as="main" bg={background} width="100vw">
