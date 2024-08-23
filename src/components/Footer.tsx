@@ -2,6 +2,7 @@ import { Box, Container, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { RiCopyrightLine, RiGithubLine } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
+import { Map } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -14,7 +15,7 @@ export const Footer = () => {
             <Link
               href="https://www.swtor.com/"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               style={{ textDecoration: "underline" }}
             >
               Star Wars: The Old Republic
@@ -32,7 +33,7 @@ export const Footer = () => {
               <Link
                 href="https://vercel.com/"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 style={{ textDecoration: "underline" }}
               >
                 Vercel
@@ -43,7 +44,7 @@ export const Footer = () => {
               <Link
                 href="https://github.com/MattElcock/titans-of-industry"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 style={{ textDecoration: "underline" }}
               >
                 View code on GitHub
@@ -55,10 +56,21 @@ export const Footer = () => {
               <Link
                 href="https://www.linkedin.com/in/matthewelcock"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 style={{ textDecoration: "underline" }}
               >
                 Matthew Elcock
+              </Link>
+            </Text>
+            <Text fontSize="sm" display="flex" alignItems="center" gap={1}>
+              <Map size={16} />
+              <Link
+                href="/sitemap.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "underline" }}
+              >
+                Sitemap
               </Link>
             </Text>
           </Box>

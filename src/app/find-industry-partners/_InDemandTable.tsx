@@ -46,7 +46,7 @@ export const InDemandTable = ({
           <Link
             href={`/our-network/${partner.id}`}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             {partner.name}
           </Link>
