@@ -20,6 +20,7 @@ import {
   Home,
   Menu as MenuIcon,
   Network,
+  PackageSearch,
   Shield,
 } from "lucide-react";
 import Link from "next/link";
@@ -36,7 +37,7 @@ interface NavLinkProps {
 
 const NavLink = ({ icon, href, children, active }: NavLinkProps) => {
   return (
-    <ListItem color={active ? "primary" : "inherit"}>
+    <ListItem color={active ? "primary.500" : "inherit"}>
       <Link href={href}>
         <Stack direction="row" gap={3} alignItems="center">
           {React.cloneElement(icon, { size: 19 })}
@@ -68,7 +69,6 @@ const MenuLinks = () => {
       >
         Our Network
       </NavLink>
-
       <UnorderedList styleType="none" spacing={3} ml={7}>
         <NavLink
           href="/our-network?type=Powerbases"
@@ -101,6 +101,13 @@ const MenuLinks = () => {
           Industries
         </NavLink>
       </UnorderedList>
+      <NavLink
+        href="/"
+        icon={<PackageSearch />}
+        active={pathname === "/find-industry-partners"}
+      >
+        Find Industry Partners
+      </NavLink>
     </UnorderedList>
   );
 };
@@ -126,7 +133,7 @@ export const MobileMenu = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent width="70vw!important">
+        <DrawerContent>
           <DrawerCloseButton />
           <DrawerBody pt={16}>
             <MenuLinks />
