@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import { Footer } from "@/components/Footer";
 import { background } from "./_theme";
 import { Analytics } from "@vercel/analytics/react";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function RootLayout({
   children,
@@ -14,6 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
+          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        )}
         <Providers>
           <Box display="grid" gridTemplateRows="auto 1fr auto" minH="100vh">
             <Header />
