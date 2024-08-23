@@ -23,11 +23,7 @@ export const Header = () => {
               <MobileMenu />
             </Suspense>
           </Box>
-          <Box
-            display={["none", "flex"]}
-            justifyContent="space-between"
-            gap={5}
-          >
+          <Box display={["none", "flex"]} gap={8}>
             <DesktopMenu />
             <DiscordInvite />
           </Box>

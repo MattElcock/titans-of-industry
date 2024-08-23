@@ -8,7 +8,7 @@ interface NavLinkProps {
 
 const NavLink = ({ href, children }: NavLinkProps) => {
   return (
-    <ListItem fontSize="xl">
+    <ListItem fontSize="lg">
       <Link href={href}>{children}</Link>
     </ListItem>
   );
@@ -28,6 +28,7 @@ export const DesktopMenu = () => {
         <NavLink href="/our-network?type=Powerbases">Powerbases</NavLink>
         <NavLink href="/our-network?type=Governorships">Governorships</NavLink>
         <NavLink href="/our-network?type=Industries">Industries</NavLink>
+        <NavLink href="/find-industry-partners">Find Industry Partners</NavLink>
       </UnorderedList>
     </Box>
   );
