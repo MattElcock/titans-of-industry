@@ -7,7 +7,7 @@ export const DiscordInvite = () => {
     <Link
       href="https://discord.gg/BpbVZaHc9w"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       style={{ display: "block", width: "fit-content" }}
       aria-label="Join our Discord server"
     >
