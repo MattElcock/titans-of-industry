@@ -103,10 +103,10 @@ export const FindIndustryPartners = ({
           <Text>
             Organizations are matched based on shared categories, which are
             derived from forum posts within our Discord server. Keep in mind
-            that some categories are broad (e.g., 'Manufacturing' includes
-            anything related to production, such as speeder bikes, starships,
-            minerals, and metals). As a result, not all matches may be relevant
-            to the selected organization.
+            that some categories are broad (e.g., &apos;Manufacturing&apos;
+            includes anything related to production, such as speeder bikes,
+            starships, minerals, and metals). As a result, not all matches may
+            be relevant to the selected organization.
           </Text>
         </Stack>
       </Stack>
@@ -121,8 +121,8 @@ export const FindIndustryPartners = ({
             </Heading>
             <Text>
               Choose an organization from our network. This will automatically
-              begin searching, with results displayed in the 'Results' section
-              below.
+              begin searching, with results displayed in the &apos;Results&apos;
+              section below.
             </Text>
             <Select
               label="Organization"
