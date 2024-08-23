@@ -1,8 +1,9 @@
-import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { RiCopyrightLine, RiGithubLine } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
-import { Map } from "lucide-react";
+import { Cookie, Map } from "lucide-react";
+import { ClearCookieConsentButton } from "@/context/CookieConsent";
 
 export const Footer = () => {
   return (
@@ -27,6 +28,7 @@ export const Footer = () => {
             justifyContent={["space-between", "start"]}
             flexDirection={["column", "row"]}
           >
+            <ClearCookieConsentButton />
             <Text fontSize="sm" display="flex" alignItems="center" gap={1}>
               <IoLogoVercel aria-label="Vercel logo" />
               Deployed on

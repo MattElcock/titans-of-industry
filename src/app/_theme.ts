@@ -14,6 +14,14 @@ export const theme = extendTheme({
     text: textColor,
   },
   components: {
+    Modal: {
+      baseStyle: {
+        dialog: {
+          bg: background,
+          color: textColor,
+        },
+      },
+    },
     Card: {
       baseStyle: {
         container: {
