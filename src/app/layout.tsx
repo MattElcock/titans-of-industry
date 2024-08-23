@@ -31,7 +31,6 @@ export default function RootLayout({
             <Footer />
           </Box>
         </Providers>
-        <Analytics />
       </body>
     </html>
   );
