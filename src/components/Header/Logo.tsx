@@ -12,8 +12,8 @@ export const Logo = () => {
     <Link href="/" style={{ display: "block", width: "fit-content" }}>
       <Box display="flex" gap={3} alignItems="center">
         <Image src="/logo.png" width={48} height={24} alt="Logo" />
-        <Text fontSize="2xl" className={font.className} lineHeight={1}>
-          <Text fontSize="md" as="span" display="block">
+        <Text fontSize="3xl" className={font.className} lineHeight={1}>
+          <Text fontSize="lg" as="span" display="block">
             TITANS OF
           </Text>
           INDUSTRY

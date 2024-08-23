@@ -31,7 +31,7 @@ export default function Home() {
       paddingX={["1rem", "unset"]}
     >
       <Box mb={[5, 10]}>
-        <Heading fontSize={["3xl", "5xl"]} mb={3}>
+        <Heading fontSize={["3xl", "5xl"]} mb={3} as="h1">
           <Text as="span" display="block">
             Collaborate,
           </Text>
