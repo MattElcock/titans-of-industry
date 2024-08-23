@@ -10,6 +10,7 @@ import {
   Box,
   Heading,
   ListItem,
+  Spinner,
   Stack,
   Text,
   UnorderedList,
@@ -36,23 +37,25 @@ export const FindIndustryPartners = ({
   const selectedOrginsaton = getQueryParam("organisation");
   const defaultValue = options.find((org) => org.value === selectedOrginsaton);
 
-  const { data: selectedOrg } = useOrganisation(
-    selectedOrginsaton!,
-    selectedOrginsaton !== undefined
-  );
+  const { isFetching: isGettingSelectedOrg, data: selectedOrg } =
+    useOrganisation(selectedOrginsaton!, selectedOrginsaton !== undefined);
 
-  const { data: inDemandData } = useOrganisations(
-    {
-      pagination: { limit: 999, page: 1 },
-      filters: {
-        type: undefined,
-        wantedConnections: selectedOrg?.potentialOffersCategories,
+  const { isFetching: isFetchingInDemand, data: inDemandData } =
+    useOrganisations(
+      {
+        pagination: { limit: 999, page: 1 },
+        filters: {
+          type: undefined,
+          wantedConnections: selectedOrg?.potentialOffersCategories,
+        },
       },
-    },
-    selectedOrg !== undefined
-  );
+      selectedOrg !== undefined
+    );
 
-  const { data: potentialSuppliersData } = useOrganisations(
+  const {
+    isFetching: isFetchingPotentialSuppliers,
+    data: potentialSuppliersData,
+  } = useOrganisations(
     {
       pagination: { limit: 999, page: 1 },
       filters: {
@@ -76,6 +79,9 @@ export const FindIndustryPartners = ({
   );
 
   const inDemand = inDemandData?.filter((org) => org.id !== selectedOrg.id);
+
+  const isFetching =
+    isFetchingPotentialSuppliers || isFetchingInDemand || isGettingSelectedOrg;
 
   return (
     <Stack spacing={7}>
@@ -136,17 +142,23 @@ export const FindIndustryPartners = ({
               2. Results
             </Heading>
             <Stack spacing={7}>
-              {inDemand && (
-                <InDemandTable
-                  selectedOrganisation={selectedOrg}
-                  organisations={inDemand}
-                />
+              {!selectedOrginsaton && !isFetching && (
+                <Text>
+                  After you choose an organization, the results will show here.
+                </Text>
               )}
-              {potentialSuppliers && (
-                <SuppliersTable
-                  selectedOrganisation={selectedOrg}
-                  organisations={potentialSuppliers}
-                />
+              {isFetching && <Spinner color="primary.500" m={3} />}
+              {!isFetching && potentialSuppliers && inDemand && (
+                <>
+                  <InDemandTable
+                    selectedOrganisation={selectedOrg}
+                    organisations={inDemand}
+                  />
+                  <SuppliersTable
+                    selectedOrganisation={selectedOrg}
+                    organisations={potentialSuppliers}
+                  />
+                </>
               )}
             </Stack>
           </Stack>
