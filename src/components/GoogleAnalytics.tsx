@@ -57,17 +57,17 @@ const ConsentModal = ({ showModal, handleConsent }: ConsentModalProps) => {
         <ModalBody>
           <Stack spacing={3}>
             <Text>
-              Hi there, welcome to Titans of Industry! We're thrilled to have
-              you.
+              Hi there, welcome to Titans of Industry! We&apos;re thrilled to
+              have you.
             </Text>
             <Text>
               To help us make our site even more awesome, we use cookies to see
-              how you're interacting with it.
+              how you&apos;re interacting with it.
             </Text>
             <Text>
-              Don't worry—these cookies are optional and just help us improve
-              your experience. We use Google Analytics to track site activity,
-              so we can keep things fun and engaging for everyone.
+              Don&apos;t worry—these cookies are optional and just help us
+              improve your experience. We use Google Analytics to track site
+              activity, so we can keep things fun and engaging for everyone.
             </Text>
             <Text>
               The choice to accept cookies is entirely up to you. Enjoy your
@@ -77,7 +77,7 @@ const ConsentModal = ({ showModal, handleConsent }: ConsentModalProps) => {
         </ModalBody>
         <ModalFooter justifyContent="center">
           <Button colorScheme="teal" mr={3} onClick={handleAccept}>
-            Yeah, that's fine!
+            Yeah, that&apos;s fine!
           </Button>
           <Button variant="outline" colorScheme="teal" onClick={handleDecline}>
             No thanks.
