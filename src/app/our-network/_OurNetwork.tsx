@@ -81,8 +81,8 @@ export const OurNetwork = () => {
                 styleType="none"
               >
                 {data.map(({ id, name, type }: any) => (
-                  <ListItem>
-                    <OrgCard key={id} name={name} type={type} id={id} />
+                  <ListItem key={id}>
+                    <OrgCard name={name} type={type} id={id} />
                   </ListItem>
                 ))}
               </UnorderedList>

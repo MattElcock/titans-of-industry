@@ -8,7 +8,7 @@ interface NavLinkProps {
 
 const NavLink = ({ href, children }: NavLinkProps) => {
   return (
-    <ListItem fontSize="lg" fontWeight="bold">
+    <ListItem fontSize="lg">
       <Link href={href}>{children}</Link>
     </ListItem>
   );
