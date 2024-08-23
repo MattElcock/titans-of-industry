@@ -20,6 +20,7 @@ const PaginationButton = ({
     <Button
       colorScheme={isCurrentPage ? "primary" : "secondary"}
       onClick={handleClick}
+      aria-description="Go to page"
     >
       {page}
     </Button>
@@ -65,7 +66,7 @@ export const Pagination = ({
   };
 
   return (
-    <Box display="flex" gap={5} justifyContent="center">
+    <Box display="flex" gap={5} justifyContent="center" as="nav">
       <IconButton
         icon={<ArrowLeft />}
         colorScheme="secondary"

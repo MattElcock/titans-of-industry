@@ -21,6 +21,7 @@ export const IconCard = ({ icon, heading, text, href }: IconCardProps) => {
             display="flex"
             alignItems="center"
             gap={2}
+            as="h2"
           >
             {icon} {heading}
           </Heading>

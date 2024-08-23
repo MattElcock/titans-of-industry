@@ -6,7 +6,14 @@ import { RevealFilters } from "@/components/RevealFilters";
 import { useGetQueryParam } from "@/hooks/useGetQueryParam";
 import { useOrganisations } from "@/hooks/useOrganisations";
 import { useUpdateUrl } from "@/hooks/useUpdateUrl";
-import { Box, Heading, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  ListItem,
+  Stack,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
 import { FiltersBar } from "./_FiltersBar";
 
 export const OurNetwork = () => {
@@ -43,7 +50,7 @@ export const OurNetwork = () => {
   return (
     <Stack spacing={10}>
       <Stack spacing={5}>
-        <Heading>Our Network</Heading>
+        <Heading as="h1">Our Network</Heading>
         <Box display={["block", "none"]}>
           <RevealFilters totalAppliedFilters={totalFiltersApplied}>
             <FiltersBar />
@@ -67,15 +74,18 @@ export const OurNetwork = () => {
         <>
           {data.length !== 0 ? (
             <>
-              <Box
+              <UnorderedList
                 display="grid"
                 gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
                 gap={5}
+                styleType="none"
               >
                 {data.map(({ id, name, type }: any) => (
-                  <OrgCard key={id} name={name} type={type} id={id} />
+                  <ListItem>
+                    <OrgCard key={id} name={name} type={type} id={id} />
+                  </ListItem>
                 ))}
-              </Box>
+              </UnorderedList>
               <Pagination
                 total={pagination.total}
                 limit={pagination.limit}
