@@ -6,8 +6,6 @@ import { useOrganisation } from "@/hooks/useOrganisation";
 import { useOrganisations } from "@/hooks/useOrganisations";
 import { useUpdateUrl } from "@/hooks/useUpdateUrl";
 import {
-  Badge,
-  Box,
   Heading,
   ListItem,
   Spinner,
@@ -22,6 +20,41 @@ import { SuppliersTable } from "./_SuppliersTable";
 interface FindIndustryPartnersProps {
   allOrganisations: Organisation[];
 }
+
+const About = () => {
+  return (
+    <>
+      <Stack spacing={4}>
+        <Heading fontSize="lg" as="h2">
+          Features
+        </Heading>
+        <UnorderedList>
+          <ListItem>
+            <strong>Identify Potential Suppliers</strong>: Discover
+            organizations that could serve as suppliers.
+          </ListItem>
+          <ListItem>
+            <strong>Find Demand for Offerings</strong>: Locate organizations
+            that may be in need of what another organization offers.
+          </ListItem>
+        </UnorderedList>
+      </Stack>
+      <Stack spacing={4}>
+        <Heading fontSize="lg" as="h2">
+          How Organizations are Matched
+        </Heading>
+        <Text>
+          Organizations are matched based on shared categories, which are
+          derived from forum posts within our Discord server. Keep in mind that
+          some categories are broad (e.g., &apos;Manufacturing&apos; includes
+          anything related to production, such as speeder bikes, starships,
+          minerals, and metals). As a result, not all matches may be relevant to
+          the selected organization.
+        </Text>
+      </Stack>
+    </>
+  );
+};
 
 export const FindIndustryPartners = ({
   allOrganisations,
@@ -87,36 +120,10 @@ export const FindIndustryPartners = ({
     <Stack spacing={7}>
       <Stack spacing={5}>
         <Heading as="h1">Find Industry Partners</Heading>
-        <Stack spacing={4}>
-          <Heading fontSize="lg" as="h2">
-            How to Use This Tool
-          </Heading>
-          <UnorderedList>
-            <ListItem>
-              <strong>Identify Potential Suppliers</strong>: Discover
-              organizations that could serve as suppliers.
-            </ListItem>
-            <ListItem>
-              <strong>Find Demand for Offerings</strong>: Locate organizations
-              that may be in need of what another organization offers.
-            </ListItem>
-          </UnorderedList>
-        </Stack>
-        <Stack spacing={4}>
-          <Heading fontSize="lg" as="h2">
-            About the Matching Process
-          </Heading>
-          <Text>
-            Organizations are matched based on shared categories, which are
-            derived from forum posts within our Discord server. Keep in mind
-            that some categories are broad (e.g., &apos;Manufacturing&apos;
-            includes anything related to production, such as speeder bikes,
-            starships, minerals, and metals). As a result, not all matches may
-            be relevant to the selected organization.
-          </Text>
-        </Stack>
-      </Stack>
-      <Stack spacing={5}>
+        <Heading as="h2" fontSize="2xl">
+          About this Tool
+        </Heading>
+        <About />
         <Heading fontSize="2xl" as="h2">
           Potential Industry Partners
         </Heading>

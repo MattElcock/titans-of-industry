@@ -23,11 +23,16 @@ export const Select = ({
 }: SelectProps) => {
   return (
     <Box width={["100%", "30rem"]}>
-      <Text mb={2}>{label}</Text>
+      <Text display="block" mb={2} id={`label-${label}`} as="label">
+        {label}
+      </Text>
       <ChakraReactSelect
+        aria-label={label}
+        aria-labelledby={`label-${label}`}
         useBasicStyles
         onChange={onChange}
         chakraStyles={{
+          placeholder: (provided) => ({ ...provided, color: "text" }),
           control: (provided) => ({
             ...provided,
             color: "text",
