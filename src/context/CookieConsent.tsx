@@ -39,12 +39,10 @@ export const CookieConsentProvider = ({
       return undefined;
     }
   };
-  const [consent, setConsent] = useState<Consent | undefined>(
-    parseCookieVal(consentVal)
-  );
+
+  const consent = parseCookieVal(consentVal);
 
   const handleSetConsent = (consent: Consent | undefined) => {
-    setConsent(consent);
     if (consent) {
       // Cookie expires after 6 months, ensuring the user is prompted regularly.
       Cookies.set(COOKIE_CONSENT_NAME, consent, { expires: 180 });
