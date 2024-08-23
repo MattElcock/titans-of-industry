@@ -17,6 +17,7 @@ interface useOrganisationsOptions {
 
 interface useOrganisationsReturn {
   isLoading: boolean;
+  isFetching: boolean;
   error: unknown;
   data?: Organisation[];
   pagination?: {
@@ -52,6 +53,7 @@ export const useOrganisations = (
 
   return {
     isLoading: query.isLoading,
+    isFetching: query.isFetching,
     error: query.error,
     data: query.data?.data,
     pagination,
