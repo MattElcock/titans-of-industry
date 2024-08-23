@@ -10,27 +10,22 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import Link from "next/link";
-
-interface Organisation {
-  id: string;
-  name: string;
-  wantedConnectionsCategories: string[];
-  potentialOffersCategories: string[];
-}
+import { Organisation } from "../api/types";
+import { startCase } from "lodash";
 
 interface Props {
   selectedOrganisation: Organisation;
   organisations: Organisation[];
 }
 
-export const SelectedOrgCanHelpWith = ({
+export const SuppliersTable = ({
   selectedOrganisation,
   organisations,
 }: Props) => {
   const tableRows = organisations.map((partner) => {
     const helpfulSelectedOrgCategories =
-      selectedOrganisation.potentialOffersCategories.filter((category) =>
-        partner.wantedConnectionsCategories.includes(category)
+      selectedOrganisation.wantedConnectionsCategories.filter((category) =>
+        partner.potentialOffersCategories.includes(category)
       );
 
     return (
@@ -54,14 +49,15 @@ export const SelectedOrgCanHelpWith = ({
             {partner.name}
           </Link>
         </Td>
+        <Td>{startCase(partner.type)}</Td>
         <Td>{helpfulSelectedOrgCategories.join(", ")}</Td>
       </Tr>
     );
   });
   return (
-    <Stack spacing={3}>
-      <Heading fontSize="xl">
-        Organizations where {selectedOrganisation.name} are in demand:
+    <Stack spacing={2}>
+      <Heading fontSize="md" as="h4">
+        Organizations that could supply {selectedOrganisation.name}:
       </Heading>
       <TableContainer>
         <Table
@@ -70,12 +66,12 @@ export const SelectedOrgCanHelpWith = ({
           size="sm"
           color="text"
           width={["100%", "40rem"]}
-          overflow="scroll"
         >
           <Thead>
             <Th color="text" width="20rem">
               Name
             </Th>
+            <Th color="text">Type</Th>
             <Th color="text">Matched Categories</Th>
           </Thead>
           <Tbody>{tableRows}</Tbody>

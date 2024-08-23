@@ -1,28 +1,22 @@
 "use client";
 
+import { Option, Select } from "@/components/SelectBox";
 import { useGetQueryParam } from "@/hooks/useGetQueryParam";
+import { useOrganisation } from "@/hooks/useOrganisation";
+import { useOrganisations } from "@/hooks/useOrganisations";
 import { useUpdateUrl } from "@/hooks/useUpdateUrl";
 import {
+  Badge,
   Box,
   Heading,
   ListItem,
   Stack,
-  TableContainer,
   Text,
   UnorderedList,
-  Thead,
-  Th,
-  Tbody,
-  Tr,
-  Td,
-  Table,
 } from "@chakra-ui/react";
 import { Organisation } from "../api/types";
-import { Select, Option } from "@/components/SelectBox";
-import { useOrganisation } from "@/hooks/useOrganisation";
-import { useOrganisations } from "@/hooks/useOrganisations";
-import { SelectedOrgCanHelpWith } from "./_SelectedOrgCanHelpWith";
-import { OrgsThatCanHelpSelected } from "./_OrgsThatCanHelpSelected";
+import { InDemandTable } from "./_InDemandTable";
+import { SuppliersTable } from "./_SuppliersTable";
 
 interface FindIndustryPartnersProps {
   allOrganisations: Organisation[];
@@ -47,7 +41,7 @@ export const FindIndustryPartners = ({
     selectedOrginsaton !== undefined
   );
 
-  const { data: selectedOrgCanHelpWithData } = useOrganisations(
+  const { data: inDemandData } = useOrganisations(
     {
       pagination: { limit: 999, page: 1 },
       filters: {
@@ -58,7 +52,7 @@ export const FindIndustryPartners = ({
     selectedOrg !== undefined
   );
 
-  const { data: orgsThatCanHelpSelectedData } = useOrganisations(
+  const { data: potentialSuppliersData } = useOrganisations(
     {
       pagination: { limit: 999, page: 1 },
       filters: {
@@ -77,34 +71,86 @@ export const FindIndustryPartners = ({
     updateUrl(params);
   };
 
+  const potentialSuppliers = potentialSuppliersData?.filter(
+    (org) => org.id !== selectedOrg.id
+  );
+
+  const inDemand = inDemandData?.filter((org) => org.id !== selectedOrg.id);
+
   return (
     <Stack spacing={7}>
-      <Heading>Find Industry Partners</Heading>
-      <Stack spacing={2} width={["100%", "30rem"]}>
-        <Text>Choose an Organization</Text>
-        <Select
-          defaultValue={defaultValue}
-          options={options}
-          onChange={handleOrgChange}
-        />
+      <Stack spacing={5}>
+        <Heading as="h1">Find Industry Partners</Heading>
+        <Stack spacing={4}>
+          <Heading fontSize="lg" as="h2">
+            How to Use This Tool
+          </Heading>
+          <UnorderedList>
+            <ListItem>
+              <strong>Identify Potential Suppliers</strong>: Discover
+              organizations that could serve as suppliers.
+            </ListItem>
+            <ListItem>
+              <strong>Find Demand for Offerings</strong>: Locate organizations
+              that may be in need of what another organization offers.
+            </ListItem>
+          </UnorderedList>
+        </Stack>
+        <Stack spacing={4}>
+          <Heading fontSize="lg" as="h2">
+            About the Matching Process
+          </Heading>
+          <Text>
+            Organizations are matched based on shared categories, which are
+            derived from forum posts within our Discord server. Keep in mind
+            that some categories are broad (e.g., 'Manufacturing' includes
+            anything related to production, such as speeder bikes, starships,
+            minerals, and metals). As a result, not all matches may be relevant
+            to the selected organization.
+          </Text>
+        </Stack>
       </Stack>
-      <Stack spacing={7}>
-        {selectedOrgCanHelpWithData && (
-          <SelectedOrgCanHelpWith
-            selectedOrganisation={selectedOrg}
-            organisations={selectedOrgCanHelpWithData.filter(
-              (org: any) => org.id !== selectedOrg.id
-            )}
-          />
-        )}
-        {orgsThatCanHelpSelectedData && (
-          <OrgsThatCanHelpSelected
-            selectedOrganisation={selectedOrg}
-            organisations={orgsThatCanHelpSelectedData.filter(
-              (org: any) => org.id !== selectedOrg.id
-            )}
-          />
-        )}
+      <Stack spacing={5}>
+        <Heading fontSize="2xl" as="h2">
+          Potential Industry Partners
+        </Heading>
+        <Stack spacing={4}>
+          <Stack spacing={3}>
+            <Heading fontSize="lg" as="h3">
+              1. Choose an Organization
+            </Heading>
+            <Text>
+              Choose an organization from our network. This will automatically
+              begin searching, with results displayed in the 'Results' section
+              below.
+            </Text>
+            <Select
+              label="Organization"
+              defaultValue={defaultValue}
+              options={options}
+              onChange={handleOrgChange}
+            />
+          </Stack>
+          <Stack spacing={3}>
+            <Heading fontSize="lg" as="h3">
+              2. Results
+            </Heading>
+            <Stack spacing={7}>
+              {inDemand && (
+                <InDemandTable
+                  selectedOrganisation={selectedOrg}
+                  organisations={inDemand}
+                />
+              )}
+              {potentialSuppliers && (
+                <SuppliersTable
+                  selectedOrganisation={selectedOrg}
+                  organisations={potentialSuppliers}
+                />
+              )}
+            </Stack>
+          </Stack>
+        </Stack>
       </Stack>
     </Stack>
   );
