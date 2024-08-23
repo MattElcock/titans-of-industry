@@ -12,15 +12,17 @@ import { ChevronDown } from "lucide-react";
 import { useRef, useState } from "react";
 
 interface PanelProps {
+  id: string;
   options: string[];
   multiselect?: boolean;
   defaultOptions?: string[];
   onChange: (val: string[]) => void;
 }
 
-const Panel = ({ options, defaultOptions, onChange }: PanelProps) => {
+const Panel = ({ id, options, defaultOptions, onChange }: PanelProps) => {
   return (
     <Box
+      id={id}
       position={["initial", "absolute"]}
       padding="1rem 2rem"
       bg="tertiary.500"
@@ -29,7 +31,7 @@ const Panel = ({ options, defaultOptions, onChange }: PanelProps) => {
       top={12}
       mt={[3, 0]}
       borderRadius={5}
-      width={["100%", "fit-content"]}
+      width={["100%", "max-content"]}
     >
       <CheckboxGroup
         colorScheme="teal"
@@ -76,6 +78,8 @@ export const FilterDropdown = ({
 
   const numOfAppliedFilters = defaultOptions?.length || 0;
 
+  const panelId = `${label}-panel`;
+
   return (
     <Box ref={ref} position="relative" width={["100%", "fit-content"]}>
       <Button
@@ -83,12 +87,14 @@ export const FilterDropdown = ({
         colorScheme="tertiary"
         rightIcon={<ChevronDown size={19} />}
         onClick={togglePanelVisibility}
+        aria-controls={panelId}
       >
         {label}
         {numOfAppliedFilters > 0 && <Badge ml={2}>{numOfAppliedFilters}</Badge>}
       </Button>
       {isPanelVisible && (
         <Panel
+          id={panelId}
           options={options}
           multiselect={multiselect}
           onChange={onChange}
