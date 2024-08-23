@@ -4,6 +4,7 @@ import { Box, Container } from "@chakra-ui/react";
 import { Providers } from "./providers";
 import { Footer } from "@/components/Footer";
 import { background } from "./_theme";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({
   children,
@@ -30,6 +31,7 @@ export default function RootLayout({
             <Footer />
           </Box>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
