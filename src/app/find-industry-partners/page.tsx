@@ -1,4 +1,4 @@
-import { commonOpenGraph } from "@/constants";
+import { commonOpenGraph, commonOtherMetaTags } from "@/constants";
 import { getConfig } from "@/utils/config";
 import axios from "axios";
 import { Metadata } from "next";
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     description: pageDescription,
     url: "https://titans-of-industry.vercel.app/find-industry-partners",
     ...commonOpenGraph,
+  },
+  other: {
+    ...commonOtherMetaTags,
   },
 };
 
