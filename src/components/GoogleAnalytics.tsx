@@ -9,7 +9,6 @@ export const GoogleAnalytics = () => {
     <>
       {ga_id && (
         <>
-          <Script src="//cdn.cookie-script.com/s/785381726705be5134c0ebf6eb5ea385.js" />
           <Script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${ga_id}`}
