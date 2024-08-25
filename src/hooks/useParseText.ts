@@ -25,21 +25,10 @@ async function swapDiscordIdForUsername(input: string): Promise<string> {
   let processedText = input;
 
   for (const userId of allUserIds) {
-    try {
-      const { data: user } = await axios.get(
-        `${config.apiUrl}/users/${userId}`
-      );
-      processedText = processedText.replace(
-        `<@${userId}>`,
-        `@${user.username} (Discord)`
-      );
-    } catch (error) {
-      processedText = processedText.replace(
-        `<@${userId}>`,
-        `@Unknown User (Discord)`
-      );
-      console.error(`Failed to fetch username for user ID: ${userId}`, error);
-    }
+    processedText = processedText.replace(
+      `<@${userId}>`,
+      `[Redacted, please view post in Discord to get in contact.]`
+    );
   }
 
   return processedText;
