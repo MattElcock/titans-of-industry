@@ -1,5 +1,5 @@
 import { IconCard } from "@/components/IconCard";
-import { commonOpenGraph } from "@/constants";
+import { commonOpenGraph, commonOtherMetaTags } from "@/constants";
 import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 import { ArrowRight, Network, PackageSearch } from "lucide-react";
 import { Metadata } from "next";
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     description: pageDescription,
     url: "https://titans-of-industry.vercel.app/",
     ...commonOpenGraph,
+  },
+  other: {
+    ...commonOtherMetaTags,
   },
 };
 

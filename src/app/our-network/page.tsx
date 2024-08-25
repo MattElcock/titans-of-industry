@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import { OurNetwork } from "./_OurNetwork";
-import { commonOpenGraph } from "@/constants";
+import { commonOpenGraph, commonOtherMetaTags } from "@/constants";
 
 const pageTitle = "Our Network | Titans of Industry";
 const pageDescription =
@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     description: pageDescription,
     url: "https://titans-of-industry.vercel.app/our-network",
     ...commonOpenGraph,
+  },
+  other: {
+    ...commonOtherMetaTags,
   },
 };
 

@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { mdComponentsMap } from "./_mdComponentsMap";
 import { Metadata } from "next";
-import { commonOpenGraph } from "@/constants";
+import { commonOpenGraph, commonOtherMetaTags } from "@/constants";
 
 interface Params {
   orgId: string;
@@ -31,6 +31,9 @@ export async function generateMetadata({ params }: { params: Params }) {
       description: pageDescription,
       url: `https://titans-of-industry.vercel.app/our-network/${orgId}`,
       ...commonOpenGraph,
+    },
+    other: {
+      ...commonOtherMetaTags,
     },
   };
 }

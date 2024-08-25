@@ -15,12 +15,6 @@ export default function RootLayout({
   const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID;
   return (
     <html lang="en">
-      <Head>
-        <meta
-          name="google-site-verification"
-          content="2aMRDzl58CR9m4SMhKekC6c2GL7V-7tNO3zJaxLUIl0"
-        />
-      </Head>
       {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <body>
         <Providers>
